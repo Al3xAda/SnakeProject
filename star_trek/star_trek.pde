@@ -1,5 +1,5 @@
 class Enterprise{
-    
+    //change
   //Eigenschaften eines Objektes vom Typ Enterprise
   float laenge, breite, hoehe;
   int geschwindigkeit, besatzung;
