@@ -11,3 +11,5 @@
     d.bewege();
     d.baueSchutzschildAuf();
   }
+
+// JA
