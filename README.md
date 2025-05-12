@@ -4,4 +4,7 @@
 * Aufgabenverteilung (nach Klassen): 
    - Mounib: 
    - Dibya: Schlange, Datenstruktur und Koerperteile
-   - Alex: Grafikschlange   
+   - Alex: Grafikschlange
+**Montag 12.Mai:**
+*Zielsetzung:
+   -Dibya: Klassen Körperteile, Datenstruktur und Schlange umsetzen. Ggf. eine primitive Umsetzung von Grafikschlange machen, um die Klasse Datenstruktur zu testen.
