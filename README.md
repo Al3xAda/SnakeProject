@@ -14,3 +14,5 @@
 ## Mittwoch 14.Mai:
 ### Zielsetzung:
    - Dibya: Methoden "move", "createCoordniates" und "getLength" programmieren. Bei der Methode "attach" einbinden, dass direkt ein neues Objekt an das letzte Element angehangen wird.
+### Tatsächlich erreicht:
+   - Dibya: Methode "move" implementiert, aber nicht überprüft. Methode "attach" angefangen zu korrigieren
