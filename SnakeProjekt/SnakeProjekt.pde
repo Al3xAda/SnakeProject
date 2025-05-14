@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+Schlange gameSnake=new Schlange();
 //Main-Klasse
 void setup () {
     size(800, 600);

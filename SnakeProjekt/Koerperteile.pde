@@ -14,8 +14,8 @@ class Koerperteile {
         hasEaten = hE;
         isTail = iT;
         direction=d;
-        posArr[0] = x;
-        posArr[1] = y;
+        posArr[1] = x;
+        posArr[0] = y;
     }
     /*public Koerperteile(boolean lT, boolean rT,  boolean hE,  int d, int x, int y) {
         leftTurn = lT;
@@ -61,9 +61,9 @@ class Koerperteile {
     public void setIsTail(boolean t) {
         isTail=s;
     }
-    public void setPosArr (int x, int y) {
-        posArr[0]=x;
-        posArr[1]=y;
+    public void setPosArr (int y, int x) {
+        posArr[1]=x;
+        posArr[0]=y;
     }
     public void setNext (Koerperteile n) {
         naechste=n;
