@@ -9,9 +9,15 @@ class Datenstruktur {
     }
     public void attach (Koerperteile a) {
         zeiger=erste;
+        int copyDirection;
         while(zeiger.getNext()!=null) {
+            if(zeiger.getNext().getNext()==null){
+                copydirection=zeiger.getNext().getDirection();
+            }
             zeiger=zeiger.getNext();
         }
+        zeiger.setIsTail(false);
+        int []copyCoordinates=new int[2];
         zeiger.setNext(a);
     }
     private void turnVerschieben(Koerperteile k){
@@ -24,44 +30,55 @@ class Datenstruktur {
         }
     }
     public LinkedList<Integer> createCoordinates() {
-        
+
     }
     public void move(int heading, boolean amEssen) {
         zeiger=erste;
-        boolean oldLeft;
-        boolean oldRight;
-        int[] oldPos;
-        int oldDirection;
+        boolean oldestLeft, oldestRight, oldLeft, oldRight;
+        int[] oldestPos, oldPos;
+        int oldestDirection, oldDirection;
+        oldestLeft=zeiger.getLeftTurn();
+        oldestRight=zeiger.getRightTurn();
+        oldestPos=zeiger.getPosArr();
+        oldestDirection=zeiger.getDirection();
+        int newDirection; //Kopf anpassen
+        newDirection=oldestDirection+heading;
+        if(newDirection<0) { //im Intervall [0;270] verbleiben
+            newDirection=270;
+        } else if(newDirection>270) {
+            newDirection=0;
+        }
+        zeiger.setDirection(newDirection),
+        switch(newDirection) {
+            case 0:
+                zeiger.setPosArr(((zeiger.getPosArr()[0])--),zeiger.getPosArr()[1]);
+                break;
+            case 90:
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])++));
+                break;
+            case 180:
+                zeiger.setPosArr(((zeiger.getPosArr()[0])++),zeiger.getPosArr()[1]);
+                break;
+            case 270:
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])--));
+                break;
+        }
         do {
-            oldLeft=zeiger.getLeftTurn();
-            oldRight=zeiger.getRightTurn();
-            oldPos=zeiger.getPosArr();
-            oldDirection=zeiger.getDirection();
-            if(zeiger.getIsHead) {         //Kopf anpassen
-                int newDirection;
-                newDirection=oldDirection+heading;
-                if(newDirection<0) { //im Intervall [0;270] verbleiben
-                    newDirection=270;
-                } else if(newDirection>270) {
-                    newDirection=0;
-                }
-                zeiger.setDirection(newDirection),
-                switch(newDirection) {
-                    case 0:
-                        zeiger.setPosArr(((zeiger.getPosArr()[0])--),zeiger.getPosArr()[1]);
-                        break;
-                    case 90:
-                        zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])++));
-                        break;
-                    case 180:
-                        zeiger.setPosArr(((zeiger.getPosArr()[0])++),zeiger.getPosArr()[1]);
-                        break;
-                    case 270:
-                        zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])--));
-                        break;
-                }
+            oldLeft=zeiger.getNext().getLeftTurn();
+            oldRight=zeiger.getNext().getRightTurn();
+            oldPos=zeiger.getNext().getPosArr();
+            oldDirection=zeiger.getNext().getDirection();
 
-            }
-        } while(zeiger.naechste!=null)
+            zeiger.getNext().setLeftTurn(oldestLeft);
+            zeiger.getNext().setRightTurn(oldestRight);
+            zeiger.getNext().setDirection(oldestDirection);
+            zeiger.getNext().setPosArr(oldPos[0], oldPos[1]);
+
+            oldestLeft=oldLeft;
+            oldestRight=oldRight;
+            oldestDirection=oldDirection;
+            oldestPos=oldPos;
+            zeiger=zeiger.getNext();
+        } while(zeiger.getNext()!=null);
     }
 }
