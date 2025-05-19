@@ -3,21 +3,15 @@ class Datenstruktur {
     private Koerperteile zeiger;
     public Koerperteile getHead() {
         if(erste==null) {
-            System.out.println("Fehler: Kein Kopf")
+            System.out.println("Fehler: Kein Kopf");
         }
         return erste;
     }
     public void attach (Koerperteile a) {
         zeiger=erste;
-        int copyDirection;
         while(zeiger.getNext()!=null) {
-            if(zeiger.getNext().getNext()==null){
-                copydirection=zeiger.getNext().getDirection();
-            }
             zeiger=zeiger.getNext();
         }
-        zeiger.setIsTail(false);
-        int []copyCoordinates=new int[2];
         zeiger.setNext(a);
     }
     private void turnVerschieben(Koerperteile k){
@@ -32,7 +26,7 @@ class Datenstruktur {
     public LinkedList<Integer> createCoordinates() {
 
     }
-    public void move(int heading, boolean amEssen) {
+    public void move(boolean verlaengern) {
         zeiger=erste;
         boolean oldestLeft, oldestRight, oldLeft, oldRight;
         int[] oldestPos, oldPos;
@@ -63,6 +57,7 @@ class Datenstruktur {
                 zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])--));
                 break;
         }
+        Koerperteile neuesEnde;
         do {
             oldLeft=zeiger.getNext().getLeftTurn();
             oldRight=zeiger.getNext().getRightTurn();
@@ -78,6 +73,10 @@ class Datenstruktur {
             oldestRight=oldRight;
             oldestDirection=oldDirection;
             oldestPos=oldPos;
+            if(verlaengern && zeiger.getNext().getNext()==null) {
+                neuesEnde=new Koerperteile(zeiger.getNext().getLeftTurn(), zeiger.getNext().getRightTurn(),false,false,true,zeiger.getNext().getDirection(),zeiger.getNext().getPosArr()[1],zeiger.getNext().getPosArr()[0]);
+                zeiger.getNext().setIsTail(false);
+            }
             zeiger=zeiger.getNext();
         } while(zeiger.getNext()!=null);
     }
