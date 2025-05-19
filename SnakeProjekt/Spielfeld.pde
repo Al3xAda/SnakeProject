@@ -2,9 +2,8 @@ class Spielfeld{
     
 Wand wand = new Wand();
 Apfel apfel = new Apfel();
-int groeße = 15;
 
-Spielfeld=new spfa[groeße][groeße];
+Spielfeld =new spfa[15][15];
 
 
 
@@ -12,14 +11,17 @@ Spielfeld=new spfa[groeße][groeße];
 public void Kasten(int x, int y){
     rect(x , y,20, 20);
     fill(0);
+    stroke(255, 45, 0, 3);
     
 }
 
-public void zeichneFeld{
+public void zeichneFeld(){
 
     for(int i=0; i<spfa.length; i++){
         for(int i=0; j<spfa.length; j++){
-            spfa[i][j].Kasten(i,j);
+          int xabstand= 20*i +7;
+          int yabstand= 20*j +7;
+            spfa[i][j].Kasten(xabstand,yabstand);
         }
 
     }
@@ -36,7 +38,10 @@ public void setzeWand(){
         }
 }
 
+public void setzeApfel(){
+    
 
+}
 
 
 
