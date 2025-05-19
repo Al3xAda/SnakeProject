@@ -12,6 +12,7 @@ Spielfeld=new spfa[groeße][groeße];
 public void Kasten(int x, int y){
     rect(x , y,20, 20);
     fill(0);
+    stroke(255, 45, 0, 3);
     
 }
 
@@ -36,7 +37,10 @@ public void setzeWand(){
         }
 }
 
+public void setzeApfel(){
+    
 
+}
 
 
 
