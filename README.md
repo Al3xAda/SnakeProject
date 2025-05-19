@@ -3,16 +3,21 @@
 * Erstellung eines Klassendiagramms
 * Einrichtung von GitHub und VSCode
 * Aufgabenverteilung (nach Klassen): 
-   - Mounib: 
+   - Mounib: Spielfeld, Main, Wand und Apfel
    - Dibya: Schlange, Datenstruktur und Koerperteile
    - Alex: Grafikschlange   
 ## Montag 12.Mai:
 ### Zielsetzung:
+   - Mounib: Das Klassendiagramm von Main, Spielfeld Wand und Apfel wurden erstellt mit einer groben Planung der Methoden und Attribute. Die Beziehung 
+   unter den einzelnen Klassen wurde ermittelt und bestimmt. 
    - Dibya: Klassen Koerperteile, Datenstruktur, Schlange umsetzen, wie im Klassendiagramm (Stand: 8.Mai) vorgesehen, ggf. primitive Umsetzung von GrafikSchlange um Datenstruktur zu testen.
 ### Tatsächlich erreicht:
    - Dibya: Klasse Koerperteile geschafft. Klasse Datenstruktur nicht vollendet, da die Methode "move" aufwändiger ist, als gedacht
 ## Mittwoch 14.Mai:
 ### Zielsetzung:
+   - Mounib: Attribute und Methoden wurden im Programm eingetragen, um uns eine grobe Übersicht zu verschaffen. Einfache Methoden wie setter und getter Methoden für die Klassen Wand und Apfel wurden erfolgreich geschrieben. Klassendiagramm wurde auf Fehler oder nutzlose Attribute bzw. Methoden geprüft und entsprechend verändert.
+   Objekte wurden erstellt, um die Beziehung zwischen den einzelnen Klassen herzustellen und um dann mit der Punktnotation zu arbeiten. 
+   Angefangen mit der Methode setzeWand()
    - Dibya: Methoden "move", "createCoordniates" und "getLength" programmieren. Bei der Methode "attach" einbinden, dass direkt ein neues Objekt an das letzte Element angehangen wird.
 ### Tatsächlich erreicht:
    - Dibya: Methode "move" implementiert, aber nicht überprüft. Methode "attach" angefangen zu korrigieren
