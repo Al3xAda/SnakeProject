@@ -5,6 +5,7 @@ Apfel apfel = new Apfel();
 
 public void zeichneFeld(){
    rect(0, 1, 20, 20); 
+   fill(0);
 
 
 
