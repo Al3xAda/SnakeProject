@@ -17,4 +17,5 @@
 ### Tatsächlich erreicht:
    - Dibya: Methode "move" implementiert, aber nicht überprüft. Methode "attach" angefangen zu korrigieren
 ## Montag 14.Mai:
+   - Mounib: Hraphisches Feld zeichnen und Funktion implementieren, die Array-Koordinaten in Pixel-Koordinaten umrechnet
    - Dibya: "attach in "move" einbinden und "createCoordinates" implementieren
