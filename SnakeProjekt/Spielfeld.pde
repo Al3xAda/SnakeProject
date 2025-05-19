@@ -2,10 +2,17 @@ class Spielfeld{
     
 Wand wand = new Wand();
 Apfel apfel = new Apfel();
+int groeße = 15;
 
-public void zeichneFeld(){
-   rect(0, 1, 20, 20); 
-   fill(0);
+Spielfeld=new spf[groeß][groeß];
+
+
+
+
+public void Kasten(){
+    rect(0, 1, 20, 20);
+    fill(0);
+    
 
 
 

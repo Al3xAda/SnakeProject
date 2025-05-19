@@ -4,7 +4,7 @@ class Apfel{
     private int width = 20;
     private int height = 20;
     PImage img;
-    bollean eaten = false;
+    boolean eaten = false;
     Apfel(int x, int y, int width, int height, PImage img){
         this.img = img;
         this.x = x;
