@@ -27,11 +27,13 @@ public void zeichneFeld{
 }
 
 public void setzeWand(){
-    for(int x=0; x<=15; x++){
-        Wand = new Wand();
-    }
-
-
+    	
+        for(int i=0; i<spfa.length; i++){
+            spfa[0][i]= new Wand();
+            spfa[14][i]= new Wand();
+            spfa[i][0]= new Wand();
+            spfa[i][14]= new Wand();
+        }
 }
 
 
