@@ -1,4 +1,4 @@
-class Datenstruktur {
+/*class Datenstruktur {
     private Koerperteile erste=new Koerperteile(false, false,true, false, false, 7,7);
     private Koerperteile zeiger;
     public Koerperteile getHead() {
