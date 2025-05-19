@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.ArrayList; 
 Schlange gameSnake=new Schlange();
 Spielfeld spf=new Spielfeld();
 //Main-Klasse
