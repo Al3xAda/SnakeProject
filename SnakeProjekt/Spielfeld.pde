@@ -9,8 +9,8 @@ Spielfeld=new spfa[groeße][groeße];
 
 
 
-public void Kasten(){
-    rect(20, 20);
+public void Kasten(int x, int y){
+    rect(x , y,20, 20);
     fill(0);
     
 }
@@ -18,8 +18,8 @@ public void Kasten(){
 public void zeichneFeld{
 
     for(int i=0; i<spfa.length; i++){
-        for(int i=0; i<spfa.length; i++){
-            spfa[i][j].Kasten();
+        for(int i=0; j<spfa.length; j++){
+            spfa[i][j].Kasten(i,j);
         }
 
     }
@@ -35,6 +35,8 @@ public void setzeWand(){
             spfa[i][14]= new Wand();
         }
 }
+
+
 
 
 
