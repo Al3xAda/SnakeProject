@@ -1,7 +1,6 @@
 class Datenstruktur {
     private Koerperteile erste=new Koerperteile(false, false,true, false, false, 90,7,7);
     private Koerperteile zeiger;
-    Koordinatenschlange koordSpericher;
     public Koerperteile getHead() {
         if(erste==null) {
             System.out.println("Fehler: Kein Kopf");
@@ -24,9 +23,31 @@ class Datenstruktur {
             k.getNext().setRightTurn(true);
         }
     }
-    /*public Koordinatenschlange createCoordinates() {
-      
-    }*/
+    
+    public int getLength(){
+      int i=1;
+      zeiger=erste;
+      while(zeiger.getNext()!=null){
+        i++;
+        zeiger=zeiger.getNext();
+      }
+      return i;
+    }
+    
+    public Koerperteile getSnakePart(int j) {
+      if(j<this.getLength()){
+        zeiger=erste;
+        int i=0;
+        while(i<j) {
+          zeiger=zeiger.getNext();
+          i++;
+        }
+        return zeiger;
+      }
+      System.out.println("Fehler bei Datenstruktur - getSnakePart");
+      return null;
+    }
+    
     public void move(int heading, boolean verlaengern) {
         zeiger=erste;
         boolean oldestLeft, oldestRight, oldLeft, oldRight;
@@ -63,7 +84,7 @@ class Datenstruktur {
             turnVerschieben(zeiger);
             if(verlaengern && zeiger.getNext().getNext()==null) {
                 neuesEnde=new Koerperteile(zeiger.getNext().getLeftTurn(), zeiger.getNext().getRightTurn(),false,false,true,zeiger.getNext().getDirection(),zeiger.getNext().getPosArr()[1],zeiger.getNext().getPosArr()[0]);
-                zeiger.getNext().setIsTail(false);
+                attach(neuesEnde);
             }
 
             oldLeft=zeiger.getNext().getLeftTurn();
