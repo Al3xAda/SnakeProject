@@ -1,18 +1,16 @@
 class Koordinatenschlange {
-    Datenstruktur rawSnake;
+    private Datenstruktur rawSnake=getLogSchl();
     private Koordinatenhalter erste;
     private Koordinatenhalter zeiger;
     
-    private void update() {
+    private void update() {  
         erste=null;
+        int [] temp=rawSnake.getSnakePart(0).getPosArr();
+        erste=new Koordinatenhalter(temp);
         zeiger=erste;
         for(int i=0; i<(rawSnake.getLength()-1); i++) {
-          int [] nextTemp=rawSnake.getSnakePart(i+1).getPosArr();
-          if(erste==null) { //bei i gleich 0
-            int [] temp=rawSnake.getSnakePart(i).getPosArr();
-            erste=new Koordinatenhalter(temp);
-          } 
-          zeiger.setNextElement(new Koordinatenhalter(nextTemp));
+          temp=rawSnake.getSnakePart(i+1).getPosArr();
+          zeiger.setNextElement(new Koordinatenhalter(temp));
           zeiger=zeiger.getNextElement();
       }
     }
@@ -36,7 +34,7 @@ class Koordinatenschlange {
     public int[] getCoordinates(int j) {
         update();
         zeiger=erste;
-        if(j<this.getLength()){
+        if(j<getLength()){
           for(int i=0;i<j;i++) {
             zeiger=zeiger.getNextElement();
           }
@@ -46,4 +44,11 @@ class Koordinatenschlange {
         return null;
     }
     
+    public void printCoord() {
+      for(int i=0; i<getLength(); i++) {
+        System.out.println(i);
+        System.out.println(getCoordinates(i));
+        System.out.println("--------------");
+      }
+    }
 }

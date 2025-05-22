@@ -1,5 +1,5 @@
 class Datenstruktur {
-    private Koerperteile erste=new Koerperteile(false, false,true, false, false, 90,7,7);
+    private Koerperteile erste;
     private Koerperteile zeiger;
     public Koerperteile getHead() {
         if(erste==null) {
@@ -7,12 +7,21 @@ class Datenstruktur {
         }
         return erste;
     }
-    private void attach (Koerperteile a) {
+    public void initialisiere(){
+       attach(new Koerperteile(false, false, true, false, false, 90, 35, 35));
+       attach(new Koerperteile(false, false, false, false, true, 90, 40, 35));
+    }
+    public void attach (Koerperteile a) {
+       if(erste==null) {
+         erste=a;
+       } else {
         zeiger=erste;
         while(zeiger.getNext()!=null) {
             zeiger=zeiger.getNext();
         }
         zeiger.setNext(a);
+        zeiger.setIsTail(true);
+       }
     }
     private void turnVerschieben(Koerperteile k){
         if(k.getLeftTurn()){
@@ -35,13 +44,14 @@ class Datenstruktur {
     }
     
     public Koerperteile getSnakePart(int j) {
-      if(j<this.getLength()){
+      if(j<getLength()){
         zeiger=erste;
         int i=0;
         while(i<j) {
           zeiger=zeiger.getNext();
           i++;
         }
+        println(zeiger.getPosArr());
         return zeiger;
       }
       System.out.println("Fehler bei Datenstruktur - getSnakePart");
