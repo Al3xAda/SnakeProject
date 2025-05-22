@@ -1,10 +1,21 @@
 class Grafikschlange{
-    Datenstruktur ds = new Datenstruktur();
+    //Datenstruktur ds = new Datenstruktur();
 
     void drawSnake(){
-        for (int i = 0; i < ds.getLength(); i++){
-            fill(0, 255, 0);
-            rect(ds.getX(i), ds.getY(i), 20, 20);
-        }
+        for(int i=0; i<ds.getLength(); i++){
+            part = ds.getSnakePart(i);
+            if(part.getIsHead()){
+                fill( 227, 230, 27 );
+                circle(getPosArr()[0], getPosArr()[1], 20);    
+            }
+            else if(part.getIsTail()){
+                fill( 255, 0, 0 );
+                rect(getPosArr()[0], getPosArr()[1], 20, 20);
+            }
+            else{
+                fill( 95, 230, 27 );
+                rect(getPosArr()[0], getPosArr()[1], 20, 20);
+            }
+        }   
     }
 }
