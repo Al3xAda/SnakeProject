@@ -7,7 +7,8 @@ class Koerperteile {
     private int direction;
     private int posArr[]= new int[2];
     private Koerperteile next;
-    public Koerperteile(boolean lT, boolean rT, boolean iH, boolean hE, boolean iT, int d, int x, int y) {
+    private Koerperteile vorher;
+    public Koerperteile(boolean lT, boolean rT, boolean iH, boolean hE, boolean iT, int d, int x, int y, Koerperteile v) {
         leftTurn = lT;
         rightTurn = rT;
         isHead = iH;
@@ -16,6 +17,7 @@ class Koerperteile {
         direction=d;
         posArr[1] = x;
         posArr[0] = y;
+        vorher=v;
     }
     /*public Koerperteile(boolean lT, boolean rT,  boolean hE,  int d, int x, int y) {
         leftTurn = lT;
@@ -42,6 +44,9 @@ class Koerperteile {
     }
     public int[] getPosArr() {
         return posArr;
+    }
+    public Koerperteile getVorher() {
+      return vorher;
     }
     public Koerperteile getNext () {
         return next;

@@ -10,17 +10,27 @@ void setup () {
   ds.initialisiere();
   coordSchl.printCoord();
   spielfeld = new Spielfeld();
-  /*spielfeld.setzeWand();
-  spielfeld.zeichneFeld();*/
+  spielfeld.setzeWand();
+  spielfeld.zeichneFeld();
   visualSnake.createSnake();
 }
-
+private int bestimmer=0;
 void draw () {
   coordSchl.printCoord();
-  //spielfeld.zeichneFeld();
-  ds.move(0, false);
+  spielfeld.zeichneFeld();
+  if (bestimmer<15) {
+    ds.move(0, false);
+  } else  if (bestimmer==16) {
+    ds.move(90, false);
+  } else if (bestimmer<30) {
+    ds.move(0, false);
+  } else if (bestimmer==30) {
+    ds.move(-90, false);
+    bestimmer=0;
+  }
   visualSnake.createSnake();
-  delay(1000);
+  delay(100);
+  bestimmer++;
 }
 
 public Datenstruktur getDs() {
