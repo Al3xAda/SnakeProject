@@ -1,3 +1,7 @@
 class Schlange {
-    Datenstruktur ds=new Datenstruktur();
+    private Datenstruktur ds=new Datenstruktur();
+    
+    public Datenstruktur getDs() {
+      return ds;
+    }
 }

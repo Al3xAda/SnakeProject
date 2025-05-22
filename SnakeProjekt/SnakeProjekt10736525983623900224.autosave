@@ -1,0 +1,28 @@
+import java.util.LinkedList;
+import java.util.ArrayList; 
+private Wand[][] spfa =new Wand[15][15];
+private Spielfeld spielfeld;
+private Schlange snake=new Schlange();
+private Datenstruktur logSchl=snake.getDs();
+private Koordinatenschlange coordSchl=new Koordinatenschlange();
+void setup () {
+    size(850, 850);
+    logSchl.initialisiere();
+    spielfeld = new Spielfeld();
+    spielfeld.setzeWand();
+    coordSchl.printCoord();
+    }
+
+    void draw () {
+    background(0);
+    spielfeld.zeichneFeld();
+    
+    }
+    
+    public Datenstruktur getLogSchl() {
+      return logSchl;
+    }
+    
+    public Koordinatenschlange getCoordSchl() {
+      return coordSchl;
+    }
