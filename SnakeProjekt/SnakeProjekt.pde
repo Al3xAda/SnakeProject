@@ -26,3 +26,7 @@ void draw () {
 public Datenstruktur getDs() {
   return ds;
 }
+
+public Koordinatenschlange getCoordSchl() {
+  return coordSchl;
+}
