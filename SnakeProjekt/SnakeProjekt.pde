@@ -10,14 +10,14 @@ void setup () {
   ds.initialisiere();
   coordSchl.printCoord();
   spielfeld = new Spielfeld();
-  /*spielfeld.setzeWand();
-  spielfeld.zeichneFeld();*/
+  spielfeld.setzeWand();
+  spielfeld.zeichneFeld();
   visualSnake.createSnake();
 }
 
 void draw () {
   coordSchl.printCoord();
-  //spielfeld.zeichneFeld();
+  spielfeld.zeichneFeld();
   ds.move(0, false);
   visualSnake.createSnake();
   delay(1000);
