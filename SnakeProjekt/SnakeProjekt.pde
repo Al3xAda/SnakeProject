@@ -12,6 +12,8 @@ void setup () {
   spielfeld = new Spielfeld();
   spielfeld.setzeWand();
   spielfeld.zeichneFeld();
+  spielfeld.setzeWand();
+  spielfeld.zeichneFeld();
   visualSnake.createSnake();
 }
 private int bestimmer=0;
