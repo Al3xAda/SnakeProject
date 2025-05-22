@@ -1,23 +1,11 @@
-class Grafikschlange{
-    //Datenstruktur ds = new Datenstruktur();
-
-    /*
-    void drawSnake(){
-        for(int i=0; i<ds.getLength(); i++){
-            part = ds.getSnakePart(i);
-            if(part.getIsHead()){
-                fill( 227, 230, 27 );
-                circle(getPosArr()[0], getPosArr()[1], 20);    
-            }
-            else if(part.getIsTail()){
-                fill( 255, 0, 0 );
-                rect(getPosArr()[0], getPosArr()[1], 20, 20);
-            }
-            else{
-                fill( 95, 230, 27 );
-                rect(getPosArr()[0], getPosArr()[1], 20, 20);
-            }
-        }   
+class Grafikschlange extends Reservoir{
+  
+    public void drawSquare(int []pos) {
+      fill(0,255,0);
+      rect((float)pos[1], (float) pos[0], (float) seiteGraphisch, (float) seiteGraphisch);
     }
-    */
+    public void drawHead(int []pos) {
+      fill(255,255,0);
+      rect((float)pos[1], (float) pos[0], (float) seiteGraphisch, (float) seiteGraphisch);
+    }
 }

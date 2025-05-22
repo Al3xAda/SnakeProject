@@ -1,4 +1,4 @@
-class Datenstruktur {
+class Datenstruktur extends Reservoir{
     private Koerperteile erste;
     private Koerperteile zeiger;
     
@@ -9,19 +9,19 @@ class Datenstruktur {
         return erste;
     }
     public void initialisiere(){
-       attach(new Koerperteile(false, false, true, false, false, 90, 35, 35));
-       attach(new Koerperteile(false, false, false, false, true, 90, 40, 35));
+       attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung)); //möglichst mittige Positionierung
+       attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung));
     }
     public void attach (Koerperteile a) {
        if(erste==null) {
          erste=a;
        } else {
-        zeiger=erste;
-        while(zeiger.getNext()!=null) {
-            zeiger=zeiger.getNext();
+        Koerperteile zeigerInt=erste;
+        while(zeigerInt.getNext()!=null) {
+            zeigerInt=zeigerInt.getNext();
         }
-        zeiger.setNext(a);
-        zeiger.setIsTail(true);
+        zeigerInt.setNext(a);
+        zeigerInt.setIsTail(true);
        }
     }
     private void turnVerschieben(Koerperteile k){
@@ -45,14 +45,15 @@ class Datenstruktur {
     }
     
     public Koerperteile getSnakePart(int j) {
+      Koerperteile zeigerInt;
       if(j<getLength()){
-        zeiger=erste;
+        zeigerInt=erste;
         int i=0;
         while(i<j) {
-          zeiger=zeiger.getNext();
+          zeigerInt=zeigerInt.getNext();
           i++;
         }
-        return zeiger;
+        return zeigerInt;
       }
       System.out.println("Fehler bei Datenstruktur - getSnakePart");
       return null;
@@ -62,7 +63,7 @@ class Datenstruktur {
         zeiger=erste;
         boolean oldestLeft, oldestRight, oldLeft, oldRight;
         int[] oldestPos, oldPos;
-        int oldestDirection, oldDirection;
+        int oldestDirection, oldDirection, oldestVerschiebungX, oldestVerschiebungY;
         oldestLeft=zeiger.getLeftTurn();
         oldestRight=zeiger.getRightTurn();
         oldestPos=zeiger.getPosArr();
@@ -75,20 +76,22 @@ class Datenstruktur {
             newDirection=0;
         }
         zeiger.setDirection(newDirection);
+        println("Bewegungsrichtung: "+newDirection);
         switch(newDirection) {
             case 0:
-                zeiger.setPosArr(((zeiger.getPosArr()[0])--),zeiger.getPosArr()[1]);
+                zeiger.setPosArr(((zeiger.getPosArr()[0])-1),zeiger.getPosArr()[1]); oldestVerschiebungY=-1; oldestVerschiebungX=0;
                 break;
             case 90:
-                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])++));
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])+1)); oldestVerschiebungY=0; oldestVerschiebungX=+1;
                 break;
             case 180:
-                zeiger.setPosArr(((zeiger.getPosArr()[0])++),zeiger.getPosArr()[1]);
+                zeiger.setPosArr(((zeiger.getPosArr()[0])+1),zeiger.getPosArr()[1]); oldestVerschiebungY=+1; oldestVerschiebungX=0;
                 break;
             case 270:
-                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])--));
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])-1)); oldestVerschiebungY=0; oldestVerschiebungX=-1;
                 break;
         }
+        //System.out.println("xMove: "+zeiger.getPosArr()[1]+"  |  yMove: "+zeiger.getPosArr()[0]);
         Koerperteile neuesEnde;
         do {
             turnVerschieben(zeiger);
@@ -96,7 +99,6 @@ class Datenstruktur {
                 neuesEnde=new Koerperteile(zeiger.getNext().getLeftTurn(), zeiger.getNext().getRightTurn(),false,false,true,zeiger.getNext().getDirection(),zeiger.getNext().getPosArr()[1],zeiger.getNext().getPosArr()[0]);
                 attach(neuesEnde);
             }
-
             oldLeft=zeiger.getNext().getLeftTurn();
             oldRight=zeiger.getNext().getRightTurn();
             oldPos=zeiger.getNext().getPosArr();
@@ -105,12 +107,30 @@ class Datenstruktur {
             zeiger.getNext().setLeftTurn(oldestLeft);
             zeiger.getNext().setRightTurn(oldestRight);
             zeiger.getNext().setDirection(oldestDirection);
-            zeiger.getNext().setPosArr(oldPos[0], oldPos[1]);
+            zeiger.getNext().setPosArr(oldestPos[0], oldestPos[1]);
+            
+            switch(newDirection) {
+            case 0:
+                zeiger.setPosArr(((zeiger.getPosArr()[0])-1),zeiger.getPosArr()[1]); oldestVerschiebungY=-1; oldestVerschiebungX=0;
+                break;
+            case 90:
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])+1)); oldestVerschiebungY=0; oldestVerschiebungX=+1;
+                break;
+            case 180:
+                zeiger.setPosArr(((zeiger.getPosArr()[0])+1),zeiger.getPosArr()[1]); oldestVerschiebungY=+1; oldestVerschiebungX=0;
+                break;
+            case 270:
+                zeiger.setPosArr(zeiger.getPosArr()[0],((zeiger.getPosArr()[1])-1)); oldestVerschiebungY=0; oldestVerschiebungX=-1;
+                break;
+        }
 
             oldestLeft=oldLeft;
             oldestRight=oldRight;
             oldestDirection=oldDirection;
             oldestPos=oldPos;
+            
+            
+            
             zeiger=zeiger.getNext();
         } while(zeiger.getNext()!=null);
     }

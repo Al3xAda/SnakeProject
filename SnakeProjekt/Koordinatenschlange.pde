@@ -47,8 +47,7 @@ class Koordinatenschlange {
 
   public void printCoord() {
     for (int i=0; i<getLength(); i++) {
-      System.out.println("X"+(i+1)+": "+getCoordinates(i)[1]);
-      System.out.println("Y"+(i+1)+": "+getCoordinates(i)[0]);
+      System.out.println("xArr"+(i+1)+": "+getCoordinates(i)[1]+"  |  yArr"+(i+1)+": "+getCoordinates(i)[0]);
       //println("i: "+i);
       System.out.println("--------------");
     }
