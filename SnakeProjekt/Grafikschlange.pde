@@ -1,6 +1,7 @@
 class Grafikschlange{
     //Datenstruktur ds = new Datenstruktur();
 
+    /*
     void drawSnake(){
         for(int i=0; i<ds.getLength(); i++){
             part = ds.getSnakePart(i);
@@ -18,4 +19,5 @@ class Grafikschlange{
             }
         }   
     }
+    */
 }
