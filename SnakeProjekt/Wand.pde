@@ -1,7 +1,8 @@
-class Wand {
+class Wand{
 
 Wand() {
 kachelfarbe= color(250,50,50);
+}
 
 public void zeichne(int x, int y){
     fill(50);
