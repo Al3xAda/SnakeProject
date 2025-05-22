@@ -19,16 +19,17 @@ void setup () {
 private int bestimmer=0;
 void draw () {
   coordSchl.printCoord();
+  println("SChalnegn_Laenge: "+ds.getLength());
   spielfeld.zeichneFeld();
-  if (bestimmer<15) {
+  if (bestimmer<14) {
     ds.move(0, false);
-  } else  if (bestimmer==16) {
-    ds.move(90, false);
+  } else  if (bestimmer==15) {
+    ds.move(90, true);
   } else if (bestimmer<30) {
     ds.move(0, false);
   } else if (bestimmer==30) {
     ds.move(-90, false);
-    bestimmer=0;
+    bestimmer=15;
   }
   visualSnake.createSnake();
   delay(100);
