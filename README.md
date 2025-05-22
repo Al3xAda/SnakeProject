@@ -21,6 +21,12 @@
    - Dibya: Methoden "move", "createCoordniates" und "getLength" programmieren. Bei der Methode "attach" einbinden, dass direkt ein neues Objekt an das letzte Element angehangen wird.
 ### Tatsächlich erreicht:
    - Dibya: Methode "move" implementiert, aber nicht überprüft. Methode "attach" angefangen zu korrigieren
-## Montag 14.Mai:
+## Montag 19.Mai:
+### Zielsetzung:
    - Mounib: Hraphisches Feld zeichnen und Funktion implementieren, die Array-Koordinaten in Pixel-Koordinaten umrechnet
-   - Dibya: "attach in "move" einbinden und "createCoordinates" implementieren
+   - Dibya: "attach" in "move" einbinden und "createCoordinates" (ein Verzeichnis, das aus den Koordinaten der einzelnen "Schlangenteile" besteht; Koordinaten werden in zweistelligen Arrays gespeichert) implementieren
+### Tatsächlich erreicht:
+   - Dibya: "attach" in "move" eingebunden; neue Datenstruktur angefangen zu implementieren, um "createCoordinates" zu realisieren
+## Donnerstag 22.Mai:
+### Zielsetzung:
+   - Dibya: Syntaxfehler beseitigen; "createCoordinates" implementieren; "move" und "createCoordinates" testen 
