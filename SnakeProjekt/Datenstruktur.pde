@@ -1,6 +1,7 @@
 class Datenstruktur {
     private Koerperteile erste;
     private Koerperteile zeiger;
+    
     public Koerperteile getHead() {
         if(erste==null) {
             System.out.println("Fehler: Kein Kopf");
@@ -51,7 +52,6 @@ class Datenstruktur {
           zeiger=zeiger.getNext();
           i++;
         }
-        println(zeiger.getPosArr());
         return zeiger;
       }
       System.out.println("Fehler bei Datenstruktur - getSnakePart");

@@ -23,4 +23,3 @@ class Wand {
     rect(x, y, 50, 50);
   }
 }
-

@@ -1,10 +1,9 @@
 import java.util.LinkedList;
 import java.util.ArrayList; 
-Wand[][] spfa =new Wand[15][15];
-Spielfeld spielfeld;
-Schlange snake=new Schlange();
-Datenstruktur ds=snake.getDs();
-Koordinatenschlange coordSchl=new Koordinatenschlange();
+private Wand[][] spfa =new Wand[15][15];
+private Spielfeld spielfeld;
+private Datenstruktur ds=new Datenstruktur();
+private Koordinatenschlange coordSchl=new Koordinatenschlange();
 void setup () {
     size(850, 850);
     ds.initialisiere();
@@ -19,4 +18,7 @@ void setup () {
     spielfeld.zeichneFeld();
     
     }
- 
+    
+ public Datenstruktur getDs(){
+   return ds;
+ }
