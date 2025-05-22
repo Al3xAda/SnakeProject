@@ -4,84 +4,44 @@ class Koordinatenschlange {
   private Koordinatenhalter zeiger;
 
   private void update() {
-    try {
-      erste=null;
-      int [] temp=rawSnake.getSnakePart(0).getPosArr();
-      erste=new Koordinatenhalter(temp);
-      zeiger=erste;
-      for (int i=0; i<(rawSnake.getLength()-1); i++) {
-        temp=rawSnake.getSnakePart(i+1).getPosArr();
-        zeiger.setNextElement(new Koordinatenhalter(temp));
-        zeiger=zeiger.getNextElement();
-      }
-    }
-    catch (NullPointerException e) {
-      println("Fehler1");
+    erste=null;
+    int [] temp=rawSnake.getSnakePart(0).getPosArr();
+    erste=new Koordinatenhalter(temp);
+    zeiger=erste;
+    for (int i=0; i<(rawSnake.getLength()-1); i++) {
+      temp=rawSnake.getSnakePart(i+1).getPosArr();
+      zeiger.setNextElement(new Koordinatenhalter(temp));
+      zeiger=zeiger.getNextElement();
     }
   }
 
   public int getLength() {
     update();
-    try {
-      int i=0;
-      if (erste==null) {
-        return i;
-      } else {
-        zeiger=erste;
-        while (zeiger.getNextElement()!=null) {
-          i++;
-          zeiger=zeiger.getNextElement();
-        }
+    int i=0;
+    if (erste==null) {
+      return i;
+    } else {
+      zeiger=erste;
+      while (zeiger.getNextElement()!=null) {
         i++;
-        return i;
+        zeiger=zeiger.getNextElement();
       }
-    }
-    catch (NullPointerException e) {
-      println("Fehler2");
-      return 0;
+      i++;
+      return i;
     }
   }
 
 
   public int[] getCoordinates(int j) {
     update();
-    
-    /*println("laenge: "+getLength());
-    print("zeiger.next==null: ");
-    println(zeiger.getNextElement()==null);*/
-    /*println("j: "+ j);
-     print("j<laenge: ");
-     println(j<getLength());*/
-    try {
-      if (j<getLength()) {
-        zeiger=erste;
-        /*print("i<j: ");
-         println(0<j);*/
-        //try {
-        for (int i=0; i<j; i++) {
-          //print("zeiger.next==null: ");
-          //println(zeiger.getNextElement()==null);
-          zeiger=zeiger.getNextElement();
-          //println("i: "+ i);
-        }
-        /*}
-         catch (NullPointerException e) {
-         println("Fehler4");
-         }*/
-        //print("zeiger.next==null: ");
-        //println(zeiger.getNextElement()==null);
-        try {
-          return zeiger.getArr();
-        }
-        catch(NullPointerException e) {
-          println("Fehler4");
-        }
+    if (j<getLength()) {
+      zeiger=erste;
+      for (int i=0; i<j; i++) {
+        zeiger=zeiger.getNextElement();
       }
-      System.out.println("Fehler bei Koordniatenschlange - getCoordinates");
+      return zeiger.getArr();
     }
-    catch (NullPointerException e) {
-      println("Fehler3");
-    }
+    System.out.println("Fehler bei Koordniatenschlange - getCoordinates");
     return null;
   }
 
