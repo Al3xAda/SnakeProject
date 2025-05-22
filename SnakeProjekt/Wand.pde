@@ -1,29 +1,12 @@
-/*class Wand {
+class Wand {
 
-    int xPos = 1;
-    int yPos =1;
-    int weight; 
-    int height; 
-    PImage image; 
+Wand() {
+kachelfarbe= color(250,50,50);
 
-public Wand(int x, int y, int weight, int height,PImage image){
-
+public void zeichne(int x, int y){
+    fill(50);
+    stroke(100);
+    rect(x, y, 20,20);
 }
 
-public int getWandPosition(int x, int y){
-
-x = xPos;
-y = yPos;
 }
-
-
-public int setWandPosition(int x, int y){
-    xPos = x;
-    yPos = y;
-}
-
-
-
-
-
-}*/
