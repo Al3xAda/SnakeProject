@@ -40,7 +40,7 @@ class Koerperteile {
     public boolean getIsTail() {
         return isTail;
     }
-    public int []getPosArr() {
+    public int[] getPosArr() {
         return posArr;
     }
     public Koerperteile getNext () {
