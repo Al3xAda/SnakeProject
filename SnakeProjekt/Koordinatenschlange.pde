@@ -1,5 +1,5 @@
-class Koordinatenschlange {
-    private Datenstruktur rawSnake=getLogSchl();
+class Koordinatenschlange extends Schlange{
+    private Datenstruktur rawSnake=ds;
     private Koordinatenhalter erste;
     private Koordinatenhalter zeiger;
     
