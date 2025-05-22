@@ -1,7 +1,7 @@
 class Spielfeld{
    
 Wand wand = new Wand("wand");
-
+Koordinatenschlange coordSchl = getCoordSchl();
 
   Spielfeld() {
     for (int i = 0; i < spfa.length; i++) {
