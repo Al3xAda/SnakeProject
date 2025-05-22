@@ -1,29 +1,26 @@
-/*class Wand {
+class Wand {
+  String typ;
+  color farbe;
 
-    int xPos = 1;
-    int yPos =1;
-    int weight; 
-    int height; 
-    PImage image; 
+  Wand(String typ) {
+    this.typ = typ;
+    switch (typ) {
+      case "wand":
+        farbe = color(200, 50, 50);
+        break;
+      case "apfel":
+        farbe = color(0, 200, 0);
+        break;
+      default:
+        farbe = color(50);
+        break;
+    }
+  }
 
-public Wand(int x, int y, int weight, int height,PImage image){
-
+  void zeichne(int x, int y) {
+    fill(farbe);
+    stroke(100);
+    rect(x, y, 50, 50);
+  }
 }
 
-public int getWandPosition(int x, int y){
-
-x = xPos;
-y = yPos;
-}
-
-
-public int setWandPosition(int x, int y){
-    xPos = x;
-    yPos = y;
-}
-
-
-
-
-
-}*/

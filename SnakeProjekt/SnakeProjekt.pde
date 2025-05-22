@@ -1,25 +1,18 @@
+import java.util.LinkedList;
+import java.util.ArrayList; 
+Wand[][] spfa =new Wand[15][15];
+Spielfeld spielfeld;
 
-/*Schlange gameSnake=new Schlange();
-Spielfeld spf=new Spielfeld();*/
-private Datenstruktur logSchl=new Datenstruktur();
-private Koordinatenschlange posSchl=new Koordinatenschlange();
-//Main-Klasse
 void setup () {
-    size(800, 600);
-    background(0);
-    noStroke();
-    fill(255);
-    logSchl.initialisiere();
-    //println(logSchl.getLength());
-    posSchl.printCoord();
-    //spf.zeichneFeld();
+    size(850, 850);
+    spielfeld = new Spielfeld();
+    spielfeld.setzeWand();
 
     }
 
     void draw () {
-    // Clear the screen 
-    background(0, 0, 0);
-    // Draw the snake
+    background(0);
+    spielfeld.zeichneFeld();
     
     }
     

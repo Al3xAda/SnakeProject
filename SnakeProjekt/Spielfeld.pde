@@ -1,49 +1,40 @@
-/*class Spielfeld{
+class Spielfeld{
    
-Wand wand = new Wand();
-Apfel apfel = new Apfel();
-
-Spielfeld =new spfa[15][15];
+Wand wand = new Wand("wand");
 
 
-
-
-public void Kasten(int x, int y){
-    rect(x , y,20, 20);
-    fill(0);
-    stroke(255, 45, 0, 3);
-    
-}
-
-public void zeichneFeld(){
-
-    for(int i=0; i<spfa.length; i++){
-        for(int i=0; j<spfa.length; j++){
-          int xabstand= 20*i +7;
-          int yabstand= 20*j +7;
-            spfa[i][j].Kasten(xabstand,yabstand);
-        }
-
+  Spielfeld() {
+    for (int i = 0; i < spfa.length; i++) {
+      for (int j = 0; j < spfa[i].length; j++) {
+        spfa[i][j] = new Wand("leer"); 
+      }
     }
+  }
 
+  public void zeichneFeld() {
+    for (int i = 0; i < spfa.length; i++) {
+      for (int j = 0; j < spfa[i].length; j++) {
+        int xabstand = 50 * i + 10;
+        int yabstand = 50 * j + 10;
+        spfa[i][j].zeichne(xabstand, yabstand);
+      }
+    }
+  }
+
+  public void setzeWand() {
+    for (int i = 0; i < spfa.length; i++) {
+      spfa[0][i] = new Wand("wand");
+      spfa[14][i] = new Wand("wand");
+      spfa[i][0] = new Wand("wand");
+      spfa[i][14] = new Wand("wand");
+    }
+  }
 }
 
-public void setzeWand(){
-    	
-        for(int i=0; i<spfa.length; i++){
-            spfa[0][i]= new Wand();
-            spfa[14][i]= new Wand();
-            spfa[i][0]= new Wand();
-            spfa[i][14]= new Wand();
-        }
-}
-
-public void setzeApfel(){
-    
-
-}
 
 
 
 
-}*/
+
+
+
