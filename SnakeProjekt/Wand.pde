@@ -1,13 +1,26 @@
-class Wand{
+class Wand {
+  String typ;
+  color farbe;
 
-Wand() {
-kachelfarbe= color(250,50,50);
-}
+  Wand(String typ) {
+    this.typ = typ;
+    switch (typ) {
+      case "wand":
+        farbe = color(200, 50, 50);
+        break;
+      case "apfel":
+        farbe = color(0, 200, 0);
+        break;
+      default:
+        farbe = color(50);
+        break;
+    }
+  }
 
-public void zeichne(int x, int y){
-    fill(50);
+  void zeichne(int x, int y) {
+    fill(farbe);
     stroke(100);
-    rect(x, y, 20,20);
+    rect(x, y, 50, 50);
+  }
 }
 
-}

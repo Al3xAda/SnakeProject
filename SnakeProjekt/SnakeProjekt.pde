@@ -1,20 +1,17 @@
 import java.util.LinkedList;
 import java.util.ArrayList; 
-/*Schlange gameSnake=new Schlange();
-Spielfeld spf=new Spielfeld();*/
-//Main-Klasse
+Wand[][] spfa =new Wand[15][15];
+Spielfeld spielfeld;
+
 void setup () {
-    size(800, 600);
-    background(0);
-    noStroke();
-    fill(255);
-    //spf.zeichneFeld();
+    size(850, 850);
+    spielfeld = new Spielfeld();
+    spielfeld.setzeWand();
 
     }
 
     void draw () {
-    // Clear the screen
-    background(0, 200, 0);
-    // Draw the snake
+    background(0);
+    spielfeld.zeichneFeld();
     
     }
