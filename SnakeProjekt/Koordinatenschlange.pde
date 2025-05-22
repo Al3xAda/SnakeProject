@@ -17,16 +17,16 @@ class Koordinatenschlange {
     }
     public void attach(int[] a) {
         zeiger=erste;
-        while(zeiger.getNextElement!=null) {
+        while(zeiger.getNextElement()!=null) {
             zeiger=zeiger.getNextElement();
         }
-        zeiger.setNextElement(new Koordinatenhalter(a))
+        zeiger.setNextElement(new Koordinatenhalter(a));
     }
 
-    public int getCoordinates(int j) {
+    public int[] getCoordinates(int j) {
         zeiger=erste;
         for(int i=0; i<j; i++) {
-            zeiger=zeiger.getNext();
+            zeiger=zeiger.getNextElement();
         }
         return zeiger.getArr();
     }

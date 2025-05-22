@@ -1,4 +1,4 @@
-class Wand {
+/*class Wand {
 
     int xPos = 1;
     int yPos =1;
@@ -26,4 +26,4 @@ public int setWandPosition(int x, int y){
 
 
 
-}
+}*/

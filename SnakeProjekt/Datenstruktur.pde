@@ -24,9 +24,9 @@ class Datenstruktur {
             k.getNext().setRightTurn(true);
         }
     }
-    public Koordinatenschlange createCoordinates() {
+    /*public Koordinatenschlange createCoordinates() {
       
-    }
+    }*/
     public void move(int heading, boolean verlaengern) {
         zeiger=erste;
         boolean oldestLeft, oldestRight, oldLeft, oldRight;

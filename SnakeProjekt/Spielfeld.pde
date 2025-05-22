@@ -1,5 +1,5 @@
-class Spielfeld{
-    
+/*class Spielfeld{
+   
 Wand wand = new Wand();
 Apfel apfel = new Apfel();
 
@@ -46,4 +46,4 @@ public void setzeApfel(){
 
 
 
-}
+}*/

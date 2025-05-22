@@ -1,4 +1,4 @@
-class Apfel{
+/*class Apfel{
     private int x;
     private int y;
     private int width = 20;
@@ -12,4 +12,4 @@ class Apfel{
         this.width = width;
         this.height = height;
     } 
-}
+}*/
