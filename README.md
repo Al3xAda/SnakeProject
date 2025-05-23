@@ -30,3 +30,8 @@
 ## Donnerstag 22.Mai:
 ### Zielsetzung:
    - Dibya: Syntaxfehler beseitigen; "createCoordinates" implementieren; "move" und "createCoordinates" testen 
+### Tatsächlich erreicht:
+   - Dibya: Grundsätzlich die Darstellung der Schlange getestet; "move" habe ich angepasst, indem ich in "Koerperteile" einen Pointer hinzugefügt habe, der auf das vorherige Objekt zeigt; das hinzufügen von Körperteilen funktioniert nicht
+## Freitag 23.Mai:
+### Zielsetzung:
+   - Dibya: das Hinzufügen von Körperteilen umsetzen
