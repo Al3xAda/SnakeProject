@@ -12,9 +12,9 @@ class Datenstruktur extends Reservoir {
     attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));
     /*attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*2), (nFelder/2)*unterteilung, erste.getNext()));
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*3), (nFelder/2)*unterteilung, erste.getNext().getNext()));
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*4), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext()));
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*5), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext().getNext()));*/
+     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*3), (nFelder/2)*unterteilung, erste.getNext().getNext()));
+     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*4), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext()));
+     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*5), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext().getNext()));*/
   }
   public void attach (Koerperteile a) {
     if (erste==null) {
@@ -63,14 +63,25 @@ class Datenstruktur extends Reservoir {
     System.out.println("Fehler bei Datenstruktur - getSnakePart");
     return null;
   }
+  private boolean bedingung() {
+    boolean bed1=(zeiger.getVorher().getPosArr()[0]==(zeiger.getPosArr()[0]+1) || zeiger.getVorher().getPosArr()[0]==(zeiger.getPosArr()[0]-1)); //Situation 180 Grad
+    boolean bed2=(zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]+1) || zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]-1)); //Situation 180 Grad
+    boolean bed3=(zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0] || zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]); //normale Sitution: warten bsi nachfolgendes Objekt aufrückt
+    boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
+    System.out.println(bed3);
+    return (bed3||((bed1||bed2)&&bed4));
+  }
   public void move(int heading, boolean verlaengern) {
     zeiger=erste;
     int adjustY=0;
     int adjustX=0;
+    int vorherDirection=0; //nur relevant, wegen 180 Grad, da Richtungsänderung des zweiten Objekts 90 Grad betragen muss, nicht 180 Grad; bei sonstigen Situationen kein Unterschied
+    boolean vorherDirectionSet=false; //nur beim zweiten Objekt
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
-      println("Grenze");
+        println("Grenze");
         if (zeiger.getIsHead()) {
+          vorherDirection=zeiger.getDirection();
           int newDirection=zeiger.getDirection()+heading;
           if (newDirection<0) { //im Intervall [0;270] verbleiben
             newDirection=270;
@@ -78,19 +89,24 @@ class Datenstruktur extends Reservoir {
             newDirection=0;
           }
           zeiger.setDirection(newDirection);
-        }  else if (zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0]||zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]) { //damit nicht nebeneinander abbiegen
-          zeiger.setDirection(zeiger.getVorher().getDirection());
+        } else if (bedingung()) { //damit nicht nebeneinander abbiegen
+          if (!vorherDirectionSet) {
+            zeiger.setDirection(vorherDirection);
+            vorherDirectionSet=true;
+          } else {
+            zeiger.setDirection(zeiger.getVorher().getDirection());
+          }
         }
       }
       switch(zeiger.getDirection()) {
       case 0:
         zeiger.setPosArr(((zeiger.getPosArr()[0])-1), zeiger.getPosArr()[1]);
         adjustX=0;
-        adjustY=(unterteilung+1); 
+        adjustY=(unterteilung+1);
         /*Erklärung von +1: O1 meint letztes Objekt, O2 meint neues/angehängtes Objekt:
-        Felder sind unterteilung-lang. Deshalb erstmal Verschiebung um Unterteilung. 
-        Allerdings wird O1 um 1 verschoben. Diese 1 muss bedacht werden, deshalb +1.
-        O2 wird in der naechsten Iteration um 1 verschoben. Dadurch gleicht sich alles aus.*/
+         Felder sind unterteilung-lang. Deshalb erstmal Verschiebung um Unterteilung.
+         Allerdings wird O1 um 1 verschoben. Diese 1 muss bedacht werden, deshalb +1.
+         O2 wird in der naechsten Iteration um 1 verschoben. Dadurch gleicht sich alles aus.*/
         break;
       case 90:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])+1));

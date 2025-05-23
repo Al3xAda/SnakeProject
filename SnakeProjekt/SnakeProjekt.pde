@@ -22,14 +22,14 @@ void draw () {
   //coordSchl.printCoord();
   //println("SChalnegn_Laenge: "+ds.getLength());
   spielfeld.zeichneFeld();
-  if (bestimmer<24) {
-    ds.move(90, false);
-  } else  if (bestimmer==25) {
+  if (bestimmer<149) {
     ds.move(0, false);
-  } else if (bestimmer<49) {
+  } else  if (bestimmer==150) {
+    ds.move(90, true);
+  } else if (bestimmer<299) {
+    ds.move(0, false);
+  } else if (bestimmer==300) {
     ds.move(-90, false);
-  } else if (bestimmer==50) {
-    ds.move(0, false);
     bestimmer=25;
   }
   visualSnake.createSnake();
