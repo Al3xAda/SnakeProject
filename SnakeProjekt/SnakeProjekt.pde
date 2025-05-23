@@ -23,17 +23,17 @@ void draw () {
   //println("SChalnegn_Laenge: "+ds.getLength());
   spielfeld.zeichneFeld();
   if (bestimmer<149) {
-    ds.move(0, false);
+    ds.move(90, false);
   } else  if (bestimmer==150) {
-    ds.move(90, true);
+    ds.move(-90, false);
   } else if (bestimmer<299) {
     ds.move(0, false);
   } else if (bestimmer==300) {
     ds.move(-90, false);
-    bestimmer=25;
+    bestimmer=0;
   }
   visualSnake.createSnake();
-  delay(50);
+  delay(100);
   bestimmer++;
 }
 
