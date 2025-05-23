@@ -11,10 +11,10 @@ class Datenstruktur extends Reservoir {
   public void initialisiere() {
     attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*2), (nFelder/2)*unterteilung, erste.getNext()));
+    /*attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*2), (nFelder/2)*unterteilung, erste.getNext()));
     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*3), (nFelder/2)*unterteilung, erste.getNext().getNext()));
     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*4), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext()));
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*5), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext().getNext()));
+    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*5), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext().getNext()));*/
   }
   public void attach (Koerperteile a) {
     if (erste==null) {
@@ -68,7 +68,8 @@ class Datenstruktur extends Reservoir {
     int adjustY=0;
     int adjustX=0;
     while (zeiger!=null) {
-      if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) {
+      if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
+      println("Grenze");
         if (zeiger.getIsHead()) {
           int newDirection=zeiger.getDirection()+heading;
           if (newDirection<0) { //im Intervall [0;270] verbleiben
@@ -85,27 +86,33 @@ class Datenstruktur extends Reservoir {
       case 0:
         zeiger.setPosArr(((zeiger.getPosArr()[0])-1), zeiger.getPosArr()[1]);
         adjustX=0;
-        adjustY=unterteilung;
+        adjustY=(unterteilung+1); 
+        /*Erklärung von +1: O1 meint letztes Objekt, O2 meint neues/angehängtes Objekt:
+        Felder sind unterteilung-lang. Deshalb erstmal Verschiebung um Unterteilung. 
+        Allerdings wird O1 um 1 verschoben. Diese 1 muss bedacht werden, deshalb +1.
+        O2 wird in der naechsten Iteration um 1 verschoben. Dadurch gleicht sich alles aus.*/
         break;
       case 90:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])+1));
-        adjustX=-unterteilung;
+        adjustX=-(unterteilung+1);
         adjustY=0;
         break;
       case 180:
         zeiger.setPosArr(((zeiger.getPosArr()[0])+1), zeiger.getPosArr()[1]);
         adjustX=0;
-        adjustY=-unterteilung;
+        adjustY=-(unterteilung+1);
         break;
       case 270:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])-1));
-        adjustX=unterteilung;
+        adjustX=(unterteilung+1);
         adjustY=0;
         break;
       }
       if (zeiger.getNext()==null && verlaengern) {
-        //Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[0]+adjustY), (zeiger.getPosArr()[1]+adjustX), zeiger);
-        //attach(schluss);
+        //println("verlengern");
+        Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger);
+        attach(schluss);
+        verlaengern=false; //erneuten Aufruf in der naechsten Iteration vermeiden
       }
       zeiger=zeiger.getNext();
     }
