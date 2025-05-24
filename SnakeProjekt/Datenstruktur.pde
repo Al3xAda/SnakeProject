@@ -11,10 +11,6 @@ class Datenstruktur extends Reservoir {
   public void initialisiere() {
     attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));
-    /*attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*2), (nFelder/2)*unterteilung, erste.getNext()));
-     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*3), (nFelder/2)*unterteilung, erste.getNext().getNext()));
-     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*4), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext()));
-     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*5), (nFelder/2)*unterteilung, erste.getNext().getNext().getNext().getNext()));*/
   }
   public void attach (Koerperteile a) {
     if (erste==null) {
@@ -68,15 +64,6 @@ class Datenstruktur extends Reservoir {
     boolean bed2=(zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]+1) || zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]-1)); //Situation 180 Grad
     boolean bed3=(zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0] || zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]); //normale Sitution: warten bsi nachfolgendes Objekt aufrückt
     boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==0 || abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
-    /*if (zeiger.getIsTail()) {
-     System.out.println("Bedingung_1:      "+bed1);
-     System.out.println("Bedingung_2:      "+bed2);
-     System.out.println("Bedingung_3:      "+bed3);
-     System.out.println("Bedingung_4:      "+bed4);
-     System.out.println("Bedingung_Teil:   "+((bed1||bed2)&&bed4));
-     System.out.println("Bedingung_Gesamt: "+(bed3||((bed1||bed2)&&bed4)));
-     System.out.println("-----------------------");
-     }*/
     return (bed3||((bed1||bed2)&&bed4));
   }
   public void move(int heading, boolean verlaengern) {
@@ -85,7 +72,6 @@ class Datenstruktur extends Reservoir {
     int adjustY=0;
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
-        //println("Grenze");
         if (zeiger.getIsHead()) {
           zeiger.setVorherDirection(zeiger.getDirection());
           int newDirection=zeiger.getDirection()+heading;
@@ -122,7 +108,6 @@ class Datenstruktur extends Reservoir {
           zeiger.setDirection(zeiger.getVorher().getVorherDirection());
         }
         if (zeiger.getNext()==null && verlaengern) {
-          //println("verlengern");
           Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger);
           attach(schluss);
           verlaengern=false; //erneuten Aufruf in der naechsten Iteration vermeiden
@@ -131,23 +116,15 @@ class Datenstruktur extends Reservoir {
       switch(zeiger.getDirection()) {
       case 0:
         zeiger.setPosArr(((zeiger.getPosArr()[0])-1), zeiger.getPosArr()[1]);
-        //adjustX=0;
-        //adjustY=(unterteilung);
         break;
       case 90:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])+1));
-        //adjustX=-(unterteilung);
-        //adjustY=0;
         break;
       case 180:
         zeiger.setPosArr(((zeiger.getPosArr()[0])+1), zeiger.getPosArr()[1]);
-        //adjustX=0;
-        //adjustY=-(unterteilung);
         break;
       case 270:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])-1));
-        //adjustX=(unterteilung);
-        //adjustY=0;
         break;
       }
 

@@ -15,13 +15,10 @@ void setup () {
   spielfeld.setzeWand();
   spielfeld.zeichneFeld();
   visualSnake.createSnake();
-  //ds.move(0, false);
 }
 private int bestimmer=0;
-private boolean laenger=true;
+private boolean laenger=false;
 void draw () {
-  //coordSchl.printCoord();
-  //println("SChalnegn_Laenge: "+ds.getLength());
   spielfeld.zeichneFeld();
   if (bestimmer<149) {
     ds.move(90, false);
@@ -29,12 +26,14 @@ void draw () {
     ds.move(-90, false);
   } else if (bestimmer<225) {
     ds.move(0, laenger);
-    if (bestimmer==175) {
+    if (bestimmer==199) {
+      laenger=true;
+    } else {
       laenger=false;
     }
   } else if (bestimmer==225) {
     ds.move(-90, false);
-    laenger=true;
+    //laenger=true;
     bestimmer=0;
   }
   visualSnake.createSnake();
