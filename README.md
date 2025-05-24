@@ -35,3 +35,8 @@
 ## Freitag 23.Mai:
 ### Zielsetzung:
    - Dibya: das Hinzufügen von Körperteilen umsetzen
+### Tatsächlich erreicht:
+   - Dibya: Körperteile können hinzugefügt werden; die Schlange kann sich über 2 Felder um 180 Grad drehen, wobei es diesbezüglich noch einen Fehler gibt
+## Samstag 24.Mai:
+### Zielsetzung
+   - Dibya: den vorherig genannten Fehler beseitigen
