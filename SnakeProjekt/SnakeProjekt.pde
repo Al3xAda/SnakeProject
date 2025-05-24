@@ -18,6 +18,7 @@ void setup () {
   //ds.move(0, false);
 }
 private int bestimmer=0;
+private boolean laenger=true;
 void draw () {
   //coordSchl.printCoord();
   //println("SChalnegn_Laenge: "+ds.getLength());
@@ -26,14 +27,18 @@ void draw () {
     ds.move(90, false);
   } else  if (bestimmer==150) {
     ds.move(-90, false);
-  } else if (bestimmer<299) {
-    ds.move(0, false);
-  } else if (bestimmer==300) {
+  } else if (bestimmer<225) {
+    ds.move(0, laenger);
+    if (bestimmer==175) {
+      laenger=false;
+    }
+  } else if (bestimmer==225) {
     ds.move(-90, false);
+    laenger=true;
     bestimmer=0;
   }
   visualSnake.createSnake();
-  delay(100);
+  delay(10);
   bestimmer++;
 }
 

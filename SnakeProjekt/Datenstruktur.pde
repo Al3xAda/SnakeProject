@@ -68,7 +68,7 @@ class Datenstruktur extends Reservoir {
     boolean bed2=(zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]+1) || zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]-1)); //Situation 180 Grad
     boolean bed3=(zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0] || zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]); //normale Sitution: warten bsi nachfolgendes Objekt aufrückt
     boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==0 || abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
-    if(!zeiger.getIsHead()) {
+    if (zeiger.getIsTail()) {
       System.out.println("Bedingung_1:      "+bed1);
       System.out.println("Bedingung_2:      "+bed2);
       System.out.println("Bedingung_3:      "+bed3);
@@ -81,15 +81,15 @@ class Datenstruktur extends Reservoir {
   }
   public void move(int heading, boolean verlaengern) {
     zeiger=erste;
+    int adjustX=-(unterteilung);
     int adjustY=0;
-    int adjustX=0;
     int vorherDirection=0; //nur relevant, wegen 180 Grad, da Richtungsänderung des zweiten Objekts 90 Grad betragen muss, nicht 180 Grad; bei sonstigen Situationen kein Unterschied
     boolean vorherDirectionSet=false; //nur beim zweiten Objekt
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
         //println("Grenze");
         if (zeiger.getIsHead()) {
-          vorherDirection=zeiger.getDirection();
+          zeiger.setVorherDirection(zeiger.getDirection());
           int newDirection=zeiger.getDirection()+heading;
           if (newDirection<0) { //im Intervall [0;270] verbleiben
             newDirection=270;
@@ -98,19 +98,27 @@ class Datenstruktur extends Reservoir {
           }
           zeiger.setDirection(newDirection);
         } else if (bedingung()) { //damit nicht nebeneinander abbiegen
-          if (!vorherDirectionSet) {
-            zeiger.setDirection(vorherDirection);
-            vorherDirectionSet=true;
-          } else {
-            zeiger.setDirection(zeiger.getVorher().getDirection());
-          }
+          /*if (!vorherDirectionSet) { //das zweite Objekt
+           zeiger.setDirection(vorherDirection);
+           vorherDirectionSet=true;
+           } else {  // die restlichen Objekte
+           zeiger.setDirection(zeiger.getVorher().getDirection());
+           }*/
+          zeiger.setVorherDirection(zeiger.getDirection());
+          zeiger.setDirection(zeiger.getVorher().getVorherDirection());
+        }
+        if (zeiger.getNext()==null && verlaengern) {
+          //println("verlengern");
+          Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger);
+          attach(schluss);
+          verlaengern=false; //erneuten Aufruf in der naechsten Iteration vermeiden
         }
       }
       switch(zeiger.getDirection()) {
       case 0:
         zeiger.setPosArr(((zeiger.getPosArr()[0])-1), zeiger.getPosArr()[1]);
         adjustX=0;
-        adjustY=(unterteilung+1);
+        adjustY=(unterteilung);
         /*Erklärung von +1: O1 meint letztes Objekt, O2 meint neues/angehängtes Objekt:
          Felder sind unterteilung-lang. Deshalb erstmal Verschiebung um Unterteilung.
          Allerdings wird O1 um 1 verschoben. Diese 1 muss bedacht werden, deshalb +1.
@@ -118,25 +126,19 @@ class Datenstruktur extends Reservoir {
         break;
       case 90:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])+1));
-        adjustX=-(unterteilung+1);
+        adjustX=-(unterteilung);
         adjustY=0;
         break;
       case 180:
         zeiger.setPosArr(((zeiger.getPosArr()[0])+1), zeiger.getPosArr()[1]);
         adjustX=0;
-        adjustY=-(unterteilung+1);
+        adjustY=-(unterteilung);
         break;
       case 270:
         zeiger.setPosArr(zeiger.getPosArr()[0], ((zeiger.getPosArr()[1])-1));
-        adjustX=(unterteilung+1);
+        adjustX=(unterteilung);
         adjustY=0;
         break;
-      }
-      if (zeiger.getNext()==null && verlaengern) {
-        //println("verlengern");
-        Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger);
-        attach(schluss);
-        verlaengern=false; //erneuten Aufruf in der naechsten Iteration vermeiden
       }
       zeiger=zeiger.getNext();
     }
