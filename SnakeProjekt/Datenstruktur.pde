@@ -67,8 +67,16 @@ class Datenstruktur extends Reservoir {
     boolean bed1=(zeiger.getVorher().getPosArr()[0]==(zeiger.getPosArr()[0]+1) || zeiger.getVorher().getPosArr()[0]==(zeiger.getPosArr()[0]-1)); //Situation 180 Grad
     boolean bed2=(zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]+1) || zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]-1)); //Situation 180 Grad
     boolean bed3=(zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0] || zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]); //normale Sitution: warten bsi nachfolgendes Objekt aufrückt
-    boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
-    System.out.println(bed3);
+    boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==0 || abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
+    if(!zeiger.getIsHead()) {
+      System.out.println("Bedingung_1:      "+bed1);
+      System.out.println("Bedingung_2:      "+bed2);
+      System.out.println("Bedingung_3:      "+bed3);
+      System.out.println("Bedingung_4:      "+bed4);
+      System.out.println("Bedingung_Teil:   "+((bed1||bed2)&&bed4));
+      System.out.println("Bedingung_Gesamt: "+(bed3||((bed1||bed2)&&bed4)));
+      System.out.println("-----------------------");
+    }
     return (bed3||((bed1||bed2)&&bed4));
   }
   public void move(int heading, boolean verlaengern) {
@@ -79,7 +87,7 @@ class Datenstruktur extends Reservoir {
     boolean vorherDirectionSet=false; //nur beim zweiten Objekt
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
-        println("Grenze");
+        //println("Grenze");
         if (zeiger.getIsHead()) {
           vorherDirection=zeiger.getDirection();
           int newDirection=zeiger.getDirection()+heading;
