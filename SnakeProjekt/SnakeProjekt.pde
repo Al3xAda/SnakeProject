@@ -8,7 +8,6 @@ private Schlange visualSnake=new Schlange();
 void setup () {
   size(850, 850);
   ds.initialisiere();
-  coordSchl.printCoord();
   spielfeld = new Spielfeld();
   spielfeld.setzeWand();
   spielfeld.zeichneFeld();
@@ -19,6 +18,7 @@ void setup () {
 private int bestimmer=0;
 private boolean laenger=false;
 void draw () {
+  coordSchl.printCoord(false);
   spielfeld.zeichneFeld();
   if (bestimmer<149) {
     ds.move(90, false);

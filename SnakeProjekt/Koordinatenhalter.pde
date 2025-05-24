@@ -1,11 +1,10 @@
 class Koordinatenhalter {
     private Koordinatenhalter next;
-    private int []arr;
-    public Koordinatenhalter(int[]a) {
-        arr=a;
-    }
-    public int [] getElement() {
-        return arr;
+    private int []arrPos; //(nFelder*unterteilung)-Felde
+    private int []arrTile; //nFelderFeld
+    public Koordinatenhalter(int[]a, int[]b) {
+        arrPos=a;
+        arrTile=b;
     }
     public void setNextElement(Koordinatenhalter kh) {
         next=kh;
@@ -13,10 +12,16 @@ class Koordinatenhalter {
     public Koordinatenhalter getNextElement() {
         return next;
     }
-    public void setArr(int[]a) {
-        arr=a;
+    public void setArrPos(int[]a) {
+        arrPos=a;
     }
-    public int []getArr() {
-        return arr;
+    public int []getArrPos() {
+        return arrPos;
+    }
+    public void setArrTile(int[]a) {
+        arrTile=a;
+    }
+    public int []getArrTile() {
+        return arrTile;
     }
 }

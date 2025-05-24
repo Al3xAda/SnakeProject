@@ -1,4 +1,4 @@
-class Koerperteile {
+class Koerperteile extends Reservoir {
   private boolean leftTurn;
   private boolean rightTurn;
   private boolean isHead;
@@ -45,6 +45,12 @@ class Koerperteile {
   }
   public int[] getPosArr() {
     return posArr;
+  }
+  public int[] getTilePos() { //Koordinaten im nFelder*nFelder-Feld
+    int xTile=posArr[1]/unterteilung;
+    int yTile=posArr[0]/unterteilung;
+    int []t={yTile, xTile};
+    return t;
   }
   public Koerperteile getVorher() {
     return vorher;

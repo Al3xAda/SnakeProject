@@ -5,12 +5,14 @@ class Koordinatenschlange {
 
   private void update() {
     erste=null;
-    int [] temp=rawSnake.getSnakePart(0).getPosArr();
-    erste=new Koordinatenhalter(temp);
+    int [] temp1=rawSnake.getSnakePart(0).getPosArr();
+    int [] temp2=rawSnake.getSnakePart(0).getTilePos();
+    erste=new Koordinatenhalter(temp1, temp2);
     zeiger=erste;
     for (int i=0; i<(rawSnake.getLength()-1); i++) {
-      temp=rawSnake.getSnakePart(i+1).getPosArr();
-      zeiger.setNextElement(new Koordinatenhalter(temp));
+      temp1=rawSnake.getSnakePart(i+1).getPosArr();
+      temp2=rawSnake.getSnakePart(i+1).getTilePos();
+      zeiger.setNextElement(new Koordinatenhalter(temp1, temp2));
       zeiger=zeiger.getNextElement();
     }
   }
@@ -32,23 +34,37 @@ class Koordinatenschlange {
   }
 
 
-  public int[] getCoordinates(int j) {
+  public int[] getPosCoord(int j) {
     update();
     if (j<getLength()) {
       zeiger=erste;
       for (int i=0; i<j; i++) {
         zeiger=zeiger.getNextElement();
       }
-      return zeiger.getArr();
+      return zeiger.getArrPos();
     }
-    System.out.println("Fehler bei Koordniatenschlange - getCoordinates");
+    System.out.println("Fehler bei Koordniatenschlange - getPosCoord");
     return null;
   }
-
-  public void printCoord() {
+  public int[] getTileCoord(int j) {
+    update();
+    if (j<getLength()) {
+      zeiger=erste;
+      for (int i=0; i<j; i++) {
+        zeiger=zeiger.getNextElement();
+      }
+      return zeiger.getArrTile();
+    }
+    System.out.println("Fehler bei Koordniatenschlange - getTileCoord");
+    return null;
+  }
+  public void printCoord(boolean pos) {
     for (int i=0; i<getLength(); i++) {
-      System.out.println("xArr"+(i+1)+": "+getCoordinates(i)[1]+"  |  yArr"+(i+1)+": "+getCoordinates(i)[0]);
-      //println("i: "+i);
+      if (pos) {
+        System.out.println("xArr"+(i+1)+": "+getPosCoord(i)[1]+"  |  yArr"+(i+1)+": "+getPosCoord(i)[0]);
+      } else {
+        System.out.println("xArr"+(i+1)+": "+getTileCoord(i)[1]+"  |  yArr"+(i+1)+": "+getTileCoord(i)[0]);
+      }
       System.out.println("--------------");
     }
   }
