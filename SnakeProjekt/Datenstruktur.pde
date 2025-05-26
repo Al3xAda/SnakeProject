@@ -83,8 +83,8 @@ class Datenstruktur extends Reservoir {
           zeiger.setDirection(newDirection);
         } else if (bedingung()) { //damit nicht nebeneinander abbiegen
           if (zeiger.getNext()==null && verlaengern) {
-            println("vorherige Richtung: "+zeiger.getVorherDirection());
-            println("aktuelle Richtung: "+zeiger.getDirection());
+            /*println("vorherige Richtung: "+zeiger.getVorherDirection());
+            println("aktuelle Richtung: "+zeiger.getDirection());*/
           }
           switch(zeiger.getDirection()) {//sozusagen vorherDirection, weil direction noch nicht angepasst
           case 0:
