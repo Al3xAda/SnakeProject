@@ -50,7 +50,7 @@ Koordinatenschlange coordSchl = getCoordSchl();
     int randomNumY = (int)(Math.random() * 16); 
     int [] a={randomNumY, randomNumX};
     for(int i = 0; i<coordSchl.getLength(); i++){
-        if(!istApfel() && coordSchl.getTileCoord(i) != a){
+        if(istApfel() == false && coordSchl.getTileCoord(i) != a){
             spfa[randomNumX][randomNumY] = new Wand("apfel");
 
         }
