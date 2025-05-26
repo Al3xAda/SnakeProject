@@ -22,10 +22,9 @@ void draw () {
   spielfeld.zeichneFeld();
   ds.move(steuerkurs, false);
   visualSnake.createSnake();
-  if((ds.getSnakePart(0).getPosArr()[0])%r.unterteilung==0 && (ds.getSnakePart(0).getPosArr()[1])%r.unterteilung==0){
-    println("Steuerkurs: "+steuerkurs);
-    steuerkurs=0;
-  } 
+  delay(10);
+  bestimmer++;
+  //spielfeld.setzeApfel();
 }
 
 public Datenstruktur getDs() {

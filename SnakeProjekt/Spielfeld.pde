@@ -2,7 +2,6 @@ class Spielfeld{
    
 Wand wand = new Wand("wand");
 Koordinatenschlange coordSchl = getCoordSchl();
-Koordinatenschlange coordSchl = getLength();
 
 
   Spielfeld() {
@@ -43,15 +42,16 @@ Koordinatenschlange coordSchl = getLength();
         }
         
     }
-
+    return istApfel;
   }
 
   public void setzeApfel(){
     int randomNumX = (int)(Math.random() * 16); 
     int randomNumY = (int)(Math.random() * 16); 
-    for(int i = 0; i<coordSchl.getLength; i++){
-        if(setzeApfel()=false && coordSchl.getCoordSchl(i) != spfa[randomNumX][randomNumY]){
-            spfa[randomNumX][randomNumY] = new Wand("Apfel");
+    int [] a={randomNumY, randomNumX};
+    for(int i = 0; i<coordSchl.getLength(); i++){
+        if(!istApfel() && coordSchl.getTileCoord(i) != a){
+            spfa[randomNumX][randomNumY] = new Wand("apfel");
 
         }
     }
