@@ -39,6 +39,7 @@ void draw () {
   visualSnake.createSnake();
   delay(10);
   bestimmer++;
+  //spielfeld.setzeApfel();
 }
 
 public Datenstruktur getDs() {
