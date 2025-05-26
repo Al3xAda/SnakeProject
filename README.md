@@ -45,3 +45,5 @@
 ## Montag 26.Mai:
 ### Zielsetzung:
    - Dibya: Steuerung der Schlange umsetzen
+### Tatsächlich erreicht:
+   - Dibya: Steuerungsansatz implementiert, der fehlerhaft ist; die Tasteninputs werden zu spät, wenn überhaupt, übernommen
