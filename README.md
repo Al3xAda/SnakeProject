@@ -38,5 +38,10 @@
 ### Tatsächlich erreicht:
    - Dibya: Körperteile können hinzugefügt werden; die Schlange kann sich über 2 Felder um 180 Grad drehen, wobei es diesbezüglich noch einen Fehler gibt
 ## Samstag 24.Mai:
-### Zielsetzung
+### Zielsetzung:
    - Dibya: den vorherig genannten Fehler beseitigen
+### Tatsächlich erreicht:
+   - Dibya: nun kann sich die Schlange fehlerfrei über zwei Felder um 180 Grad drehen; das Hinzufügen von Körperteilen während der Drehung funktioniert einwandfrei
+## Montag 26.Mai:
+### Zielsetzung:
+   - Dibya: Steuerung der Schlange umsetzen
