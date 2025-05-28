@@ -22,7 +22,7 @@ void setup () {
 void draw () {
   spielfeld.zeichneFeld();
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
-    ds.move(steuerkurs, spielfeld.);
+    ds.move(steuerkurs, spielfeld.apfelinSchlange());
     vorherGedreht=true;
     steuerkurs=0;
   } else {
