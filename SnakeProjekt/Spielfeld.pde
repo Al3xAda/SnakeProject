@@ -72,11 +72,17 @@ Koordinatenschlange coordSchl = getCoordSchl();
       break;
     }
   }
+
+  
+
 }
 
+public boolean CrashMitWand(){
 
+  
+    
+  }
 
  
 
 }
-.
