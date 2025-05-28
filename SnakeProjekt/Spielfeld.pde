@@ -101,7 +101,9 @@ public void apfelEssen(){
 
 /*public boolean CrashMitWand(){
   boolean crashed=false;
-  if
+  for(int i=0; i<spfa.length; i++){
+    if(spfa[][])
+  }
     
   }
 

@@ -58,5 +58,5 @@
    - den groben Aufbau der Methode fertiggestellt ; Logische Probleme gelöst; Weitere Probleme sind noch offen;
    - Dibya: Steuerungsansatz implementiert, der fehlerhaft ist; die Tasteninputs werden zu spät, wenn überhaupt, übernommen
 ## Mittwoch 28.Mai:
-   - Mounib: Für Dibya die Methode ApfelinSchlange() geschrieben; Mit der Methode CrashmitWand() angefangen
+   - Mounib: Für Dibya die Methode ApfelinSchlange() geschrieben; Mit der Methode CrashmitWand() angefangen; Die Methode apfelEssen() fertiggestellt;
    - Dibya: Steuerung implementieren
