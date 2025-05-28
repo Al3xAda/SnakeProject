@@ -26,6 +26,7 @@ void draw () {
     vorherGedreht=true;
     steuerkurs=0;
   } else {
+    //ds.move(0, spielfeld.apfelinSchlange());
     ds.move(0, false);
     vorherGedreht=false;
   }
