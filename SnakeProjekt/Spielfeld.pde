@@ -87,12 +87,12 @@ public boolean ApfelinSchlange(){
   return aufSchlange;
 }
 
-public boolean CrashMitWand(){
+/*public boolean CrashMitWand(){
   boolean crashed=false;
-
+  if
     
   }
 
- 
+ */
 
 }
