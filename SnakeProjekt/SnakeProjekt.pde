@@ -31,6 +31,7 @@ void draw () {
   }
   visualSnake.createSnake();
   spielfeld.setzeApfel();
+  spielfeld.apfelEssen();
   //delay(10);
 }
 

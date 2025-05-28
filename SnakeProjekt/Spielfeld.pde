@@ -67,7 +67,7 @@ private int ay;
     boolean aufSchlange = false;
     for (int i = 0; i < coordSchl.getLength(); i++) {
       int[] pos = coordSchl.getTileCoord(i); 
-      if (pos[0] == x && pos[1] == y) {
+      if (pos[0] == y && pos[1] == x) {
         aufSchlange = true;
         break;
       }
@@ -94,7 +94,9 @@ public boolean apfelinSchlange(){
 }
 
 public void apfelEssen(){
-  if(apfel)
+  if(apfelinSchlange()==true){
+    spfa[ax][ay] = new Wand("leer")
+  }
 }
 
 /*public boolean CrashMitWand(){
