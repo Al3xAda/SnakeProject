@@ -79,4 +79,3 @@ Koordinatenschlange coordSchl = getCoordSchl();
  
 
 }
-.
