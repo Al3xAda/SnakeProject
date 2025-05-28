@@ -80,9 +80,22 @@ Koordinatenschlange coordSchl = getCoordSchl();
 /*public boolean CrashMitWand(){
 
   
-    
-  }*/
+public boolean ApfelinSchlange(){
+  boolean aufSchlange = false;
+      int[] pos = coordSchl.getTileCoord(0); 
+      if (pos[0] == x && pos[1] == y) {
+        aufSchlange = true;
+        break;
+      }
+  return aufSchlange;
+}
 
- 
+/*public boolean CrashMitWand(){
+  boolean crashed=false;
+  if
+    
+  }
+
+ */
 
 }
