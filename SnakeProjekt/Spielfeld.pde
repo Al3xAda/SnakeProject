@@ -45,17 +45,34 @@ Koordinatenschlange coordSchl = getCoordSchl();
     return istApfel;
   }
 
-  public void setzeApfel(){
-    int randomNumX = (int)(Math.random() * 16); 
-    int randomNumY = (int)(Math.random() * 16); 
-    int [] a={randomNumY, randomNumX};
-    for(int i = 0; i<coordSchl.getLength(); i++){
-        if(istApfel() == false && coordSchl.getTileCoord(i) != a){
-            spfa[randomNumX][randomNumY] = new Wand("apfel");
-
-        }
+  public void setzeApfel() {
+  for (int i = 0; i < spfa.length; i++) {
+    for (int j = 0; j < spfa[i].length; j++) {
+      if (spfa[i][j].typ.equals("apfel")) {
+        return; 
+      }
     }
   }
+  while (true) {
+    int x = (int)(Math.random() * spfa.length);
+    int y = (int)(Math.random() * spfa[0].length);
+    if (!spfa[x][y].typ.equals("leer")) {
+      continue;
+    }
+    boolean aufSchlange = false;
+    for (int i = 0; i < coordSchl.getLength(); i++) {
+      int[] pos = coordSchl.getTileCoord(i); 
+      if (pos[0] == x && pos[1] == y) {
+        aufSchlange = true;
+        break;
+      }
+    }
+    if (!aufSchlange) {
+      spfa[x][y] = new Wand("apfel");
+      break;
+    }
+  }
+}
 
  
 

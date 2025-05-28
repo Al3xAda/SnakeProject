@@ -23,8 +23,8 @@ void draw () {
   ds.move(steuerkurs, false);
   visualSnake.createSnake();
   delay(10);
-  bestimmer++;
-  //spielfeld.setzeApfel();
+  //bestimmer++;
+  spielfeld.setzeApfel();
 }
 
 public Datenstruktur getDs() {
