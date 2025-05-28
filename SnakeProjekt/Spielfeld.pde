@@ -78,6 +78,8 @@ Koordinatenschlange coordSchl = getCoordSchl();
 }
 
 public boolean apfelinSchlange(){
+  int x = (int)(Math.random() * spfa.length);
+  int y = (int)(Math.random() * spfa[0].length);
   boolean aufSchlange = false;
       int[] pos = coordSchl.getTileCoord(0); 
       if (pos[0] == x && pos[1] == y) {
@@ -87,7 +89,9 @@ public boolean apfelinSchlange(){
   return aufSchlange;
 }
 
-
+public void apfelEssen(){
+  if(apfel)
+}
 
 /*public boolean CrashMitWand(){
   boolean crashed=false;
