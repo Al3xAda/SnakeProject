@@ -33,7 +33,9 @@ void draw () {
   visualSnake.createSnake();
   spielfeld.setzeApfel();
   spielfeld.apfelEssen();
-  //delay(10);
+  /*if (ds.getLength()>=3) {
+    delay(200);
+  }*/
 }
 
 public Datenstruktur getDs() {
