@@ -94,7 +94,9 @@ public boolean apfelinSchlange(){
 }
 
 public void apfelEssen(){
-  if(apfel)
+  if(apfelinSchlange()==true){
+    spfa[ax][ay] = new Wand("leer");
+  }
 }
 
 /*public boolean CrashMitWand(){
