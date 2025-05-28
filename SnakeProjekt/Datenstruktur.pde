@@ -1,7 +1,6 @@
 class Datenstruktur extends Reservoir {
   private Koerperteile erste;
   private Koerperteile zeiger;
-  private int iterator=1;
   public Koerperteile getHead() {
     if (erste==null) {
       System.out.println("Fehler: Kein Kopf");
@@ -64,16 +63,6 @@ class Datenstruktur extends Reservoir {
     boolean bed2=(zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]+1) || zeiger.getVorher().getPosArr()[1]==(zeiger.getPosArr()[1]-1)); //Situation 180 Grad
     boolean bed3=(zeiger.getVorher().getPosArr()[0]==zeiger.getPosArr()[0] || zeiger.getVorher().getPosArr()[1]==zeiger.getPosArr()[1]); //normale Sitution: warten bsi nachfolgendes Objekt aufrückt
     boolean bed4=abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==0 || abs(zeiger.getVorher().getDirection()-zeiger.getDirection())==180;
-    /*if (zeiger.getVorher().getVorher()!=null) {
-     println(iterator+".");
-     println("bed1: "+bed1);
-     println("bed2: "+bed2);
-     println("bed3: "+bed3);
-     println("bed4: "+bed4);
-     println("ges: "+(bed3||((bed1||bed2)&&bed4)));
-     println("-----------");
-     iterator++;
-     }*/
     return (bed3||((bed1||bed2)&&bed4));
   }
   public void move(int heading, boolean verlaengern) {
@@ -92,11 +81,6 @@ class Datenstruktur extends Reservoir {
           }
           zeiger.setDirection(newDirection);
         } else if (bedingung()) { //damit nicht nebeneinander abbiegen
-          if (zeiger.getVorher().getVorher()!=null) {
-            println("vorherige Richtung: "+zeiger.getVorherDirection());
-            println("aktuelle Richtung: "+zeiger.getDirection());
-            println("-----------");
-          }
           switch(zeiger.getDirection()) {//sozusagen vorherDirection, weil direction noch nicht angepasst
           case 0:
             adjustX=0;

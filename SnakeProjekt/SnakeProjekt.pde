@@ -5,11 +5,9 @@ private Datenstruktur ds=new Datenstruktur();
 private Koordinatenschlange coordSchl=new Koordinatenschlange();
 private Schlange visualSnake=new Schlange();
 private int steuerkurs;
-private boolean vorherGedreht;
 Reservoir r=new Reservoir();
 void setup () {
   size(850, 850);
-  vorherGedreht=false;
   steuerkurs=0;
   ds.initialisiere();
   spielfeld = new Spielfeld();
@@ -23,19 +21,14 @@ void draw () {
   spielfeld.zeichneFeld();
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
     ds.move(steuerkurs, spielfeld.apfelinSchlange());
-    vorherGedreht=true;
     steuerkurs=0;
   } else {
     //ds.move(0, spielfeld.apfelinSchlange());
     ds.move(0, false);
-    vorherGedreht=false;
   }
   visualSnake.createSnake();
   spielfeld.setzeApfel();
   spielfeld.apfelEssen();
-  /*if (ds.getLength()>=3) {
-    delay(200);
-  }*/
 }
 
 public Datenstruktur getDs() {
