@@ -77,7 +77,7 @@ Koordinatenschlange coordSchl = getCoordSchl();
 
 }
 
-public boolean ApfelinSchlange(){
+public boolean apfelinSchlange(){
   boolean aufSchlange = false;
       int[] pos = coordSchl.getTileCoord(0); 
       if (pos[0] == x && pos[1] == y) {
@@ -86,6 +86,7 @@ public boolean ApfelinSchlange(){
       }
   return aufSchlange;
 }
+
 
 
 /*public boolean CrashMitWand(){
