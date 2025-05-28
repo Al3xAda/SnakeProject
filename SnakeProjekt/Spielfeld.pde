@@ -75,13 +75,13 @@ Koordinatenschlange coordSchl = getCoordSchl();
 
   
 
-}
+}  
 
-public boolean CrashMitWand(){
+/*public boolean CrashMitWand(){
 
   
     
-  }
+  }*/
 
  
 

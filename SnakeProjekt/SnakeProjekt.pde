@@ -21,24 +21,8 @@ void setup () {
 }
 void draw () {
   spielfeld.zeichneFeld();
-  println("Steuerkurs: "+steuerkurs);
-  println("Richtung: "+ds.getSnakePart(0).getDirection());
-    switch(keyCode) {
-  case KeyEvent.VK_LEFT:
-    println("Input: lnks");
-    break;
-  case KeyEvent.VK_RIGHT:
-    println("Input: rechts");
-    break;
-  case KeyEvent.VK_UP:
-    println("Input: oben");
-    break;
-  case KeyEvent.VK_DOWN:
-    println("Input: unten");
-    break;
-  }
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
-    ds.move(steuerkurs, false);
+    ds.move(steuerkurs, spielfeld.);
     vorherGedreht=true;
     steuerkurs=0;
   } else {
