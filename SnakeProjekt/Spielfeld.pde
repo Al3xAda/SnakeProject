@@ -1,8 +1,10 @@
 class Spielfeld{
    
+
 Wand wand = new Wand("wand");
 Koordinatenschlange coordSchl = getCoordSchl();
-
+private int ax;
+private int ay;
 
   Spielfeld() {
     for (int i = 0; i < spfa.length; i++) {
@@ -56,6 +58,9 @@ Koordinatenschlange coordSchl = getCoordSchl();
   while (true) {
     int x = (int)(Math.random() * spfa.length);
     int y = (int)(Math.random() * spfa[0].length);
+    ax = x;
+    ay = y;
+
     if (!spfa[x][y].typ.equals("leer")) {
       continue;
     }
@@ -78,13 +83,12 @@ Koordinatenschlange coordSchl = getCoordSchl();
 }
 
 public boolean apfelinSchlange(){
-  int x = (int)(Math.random() * spfa.length);
-  int y = (int)(Math.random() * spfa[0].length);
+  int x = ax;
+  int y = ay;
   boolean aufSchlange = false;
       int[] pos = coordSchl.getTileCoord(0); 
-      if (pos[0] == x && pos[1] == y) {
+      if (pos[0] == y && pos[1] == x) {
         aufSchlange = true;
-        break;
       }
   return aufSchlange;
 }
