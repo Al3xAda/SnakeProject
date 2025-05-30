@@ -64,8 +64,8 @@ class Koordinatenschlange {
         System.out.println("xArr"+(i+1)+": "+getPosCoord(i)[1]+"  |  yArr"+(i+1)+": "+getPosCoord(i)[0]);
       } else {
         System.out.println("xArr"+(i+1)+": "+getTileCoord(i)[1]+"  |  yArr"+(i+1)+": "+getTileCoord(i)[0]);
-      }
-      System.out.println("--------------");
+      } 
     }
+    System.out.println("--------------");
   }
 }

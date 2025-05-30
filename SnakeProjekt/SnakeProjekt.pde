@@ -19,16 +19,17 @@ void setup () {
 }
 void draw () {
   spielfeld.zeichneFeld();
+  coordSchl.printCoord(false);
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
     ds.move(steuerkurs, spielfeld.apfelinSchlange());
     steuerkurs=0;
   } else {
-    //ds.move(0, spielfeld.apfelinSchlange());
     ds.move(0, false);
   }
   visualSnake.createSnake();
   spielfeld.setzeApfel();
   spielfeld.apfelEssen();
+  delay(300);
 }
 
 public Datenstruktur getDs() {
