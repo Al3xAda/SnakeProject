@@ -58,9 +58,11 @@
    - den groben Aufbau der Methode fertiggestellt ; Logische Probleme gelöst; Weitere Probleme sind noch offen;
    - Dibya: Steuerungsansatz implementiert, der fehlerhaft ist; die Tasteninputs werden zu spät, wenn überhaupt, übernommen
 ## Mittwoch 28.Mai:
+### Zielsetzung:
    - Mounib: Für Dibya die Methode ApfelinSchlange() geschrieben; Mit der Methode CrashmitWand() angefangen; Die Methode apfelEssen() fertiggestellt;
    - Dibya: Steuerung implementieren
 ### Tatsächlich erreicht:
    - Dibya: Steuerung (fehlerfrei) implementiert; Fehler entdeckt: drehen um 180 Grad über drei Felder funktioniert nicht und das Hinzufügen von Schlangenteilen (wenn ein Apfel "gegessen wird") funktioniert nicht, diese Fehler behoben
 ## Freitag 30.Mai:
+### Zielsetzung:
    - Dibya: das bisherige Programm testen; Verdacht darauf, dass die "Koordinatenschlange" nicht funktioniert, da die Äpfel teilweise in die Schlange gesetzt werden; dem Verdacht nachgehen
