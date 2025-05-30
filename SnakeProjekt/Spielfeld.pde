@@ -44,7 +44,30 @@ class Spielfeld extends Reservoir {
     }
     return istApfel;
   }
-
+  private boolean apfelInEcke(int x, int y, int i) {
+    boolean fall=false;
+    int[] pos = coordSchl.getTileCoord(i);
+    if (i>0) {
+      for (int extraX=-1; extraX<=1; extraX++) {
+        for (int extraY=-1; extraY<=1; extraY++) {
+          if(extraX==0 ^ extraY==0) { //^=XOR
+            if(coordSchl.snakePartExists(x+extraX,y+extraY)) {
+              switch(extraX) {
+                case -1:
+                  fall=(coordSchl.getDirection(i)==90 || fall); // wenn fall schon auf true gesetzt wurde bleibt fall true
+                  break;
+                case 0:
+                  if(extraY==1) {
+                    fall=(coordSchl.getDirection(i)==0 || fall);
+                  }
+              }
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
   public void setzeApfel() {
     for (int i = 0; i < spfa.length; i++) {
       for (int j = 0; j < spfa[i].length; j++) {
@@ -65,7 +88,7 @@ class Spielfeld extends Reservoir {
       boolean aufSchlange = false;
       for (int i = 0; i < coordSchl.getLength(); i++) {
         int[] pos = coordSchl.getTileCoord(i);
-        if (pos[0] == y && pos[1] == x) {
+        if ((pos[0] == y && pos[1] == x) || apfelInEcke(x, y, i)) {
           aufSchlange = true;
           break;
         }

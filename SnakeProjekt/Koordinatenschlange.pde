@@ -33,6 +33,24 @@ class Koordinatenschlange {
     }
   }
 
+  public int getDirection(int j) {
+    update();
+    if (j<getLength()) {
+      return rawSnake.getSnakePart(j).getDirection();
+    }
+    System.out.println("Fehler bei Koordniatenschlange - getPosCoord");
+    return -44;
+  }
+
+  public boolean snakePartExists(int x, int y) {
+    boolean rueckgabe=false;
+    for (int i=0; i<getLength(); i++) {
+      if (getTileCoord(i)[0]==y && getTileCoord(i)[1]==x) {
+        rueckgabe=true;
+      }
+    }
+    return rueckgabe;
+  }
 
   public int[] getPosCoord(int j) {
     update();
@@ -64,7 +82,7 @@ class Koordinatenschlange {
         System.out.println("xArr"+(i+1)+": "+getPosCoord(i)[1]+"  |  yArr"+(i+1)+": "+getPosCoord(i)[0]);
       } else {
         System.out.println("xArr"+(i+1)+": "+getTileCoord(i)[1]+"  |  yArr"+(i+1)+": "+getTileCoord(i)[0]);
-      } 
+      }
     }
     System.out.println("--------------");
   }
