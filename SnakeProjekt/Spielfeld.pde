@@ -45,7 +45,7 @@ class Spielfeld extends Reservoir {
     return istApfel;
   }
   private boolean apfelInEcke(int x, int y, int i) {
-    boolean fall=false;
+    /*boolean fall=false;
     int[] pos = coordSchl.getTileCoord(i);
     if (i>0) {
       for (int extraX=-1; extraX<=1; extraX++) {
@@ -65,7 +65,7 @@ class Spielfeld extends Reservoir {
           }
         }
       }
-    }
+    }*/
     return false;
   }
   public void setzeApfel() {

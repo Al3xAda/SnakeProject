@@ -47,9 +47,11 @@ class Koerperteile extends Reservoir {
     return posArr;
   }
   public int[] getTilePos() { //Koordinaten im nFelder*nFelder-Feld
-    int xTile=posArr[1]/unterteilung;
-    int yTile=posArr[0]/unterteilung;
-    int []t={yTile, xTile};
+    float xTile=(posArr[1]/unterteilung); //+ 0.5, um aus oberer linker Ecke
+    float yTile=(posArr[0]/unterteilung); // Koordinate des Mittelpunktes zu machen
+    xTile+=0.5;
+    yTile+=0.5;
+    int []t={(int)yTile, (int)xTile};
     return t;
   }
   public Koerperteile getVorher() {
