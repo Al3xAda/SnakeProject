@@ -11,7 +11,12 @@ class Schlange extends Reservoir {
       } else {
         gs.drawSquare(coord);
       }
-      //System.out.println("xGraphisch_"+(i+1)+": "+coord[1]+"  |  yGraphisch_"+(i+1)+": "+coord[0]);
+      int[]mitte=ds.getSnakePart(i).getTilePos();
+      gs.drawCentre(mitte);
+      if (i==0) {
+        System.out.println("xCoord"+(i+1)+": "+mitte[1]+"  |  yCoord"+(i+1)+": "+mitte[0]);
+      }
     }
+    //System.out.println("---------------------");
   }
 }

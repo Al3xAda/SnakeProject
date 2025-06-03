@@ -8,8 +8,18 @@ class Datenstruktur extends Reservoir {
     return erste;
   }
   public void initialisiere() {
+    /*attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
+     attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));*/
     attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));
+    int n=1;
+    Koerperteile schieber=erste;
+    for(int i=0; i<300; i++) {
+      attach(new Koerperteile(false, false, false, false, false, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber));
+      schieber=schieber.getNext();
+      n++;
+    }
+    //möglichst mittige Positionierung
+    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber));
   }
   public void attach (Koerperteile a) {
     if (erste==null) {
