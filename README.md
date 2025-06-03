@@ -66,3 +66,15 @@
 ## Freitag 30.Mai:
 ### Zielsetzung:
    - Dibya: das bisherige Programm testen; Verdacht darauf, dass die "Koordinatenschlange" nicht funktioniert, da die Äpfel teilweise in die Schlange gesetzt werden; dem Verdacht nachgehen
+### Tatsächlich erreicht:
+   - Dibya: der Verdacht hat sich bestätigt; wenn die Schlange einen Knick hat (also an den Stellen, an denen sie sich dreht), dann wird das in der Koordinatenschlange als nicht durch die Schlange besetzte Position vermerkt
+## Sonntag 1.Juni:
+### Zielsetzung:
+   - Dibya: den Fehler beheben
+### Tatsächlich erreicht:
+   - Dibya: einen Ansatz entwickelt, der in der Praxis nicht funktioniert; Ansatz/Ueberlegungen: in der Koordinatenschlange werden die Koordinaten der oberen linken Ecke des Spielfeldes gezeichnet, weshalb bei Knicken in der Schlange diese Felder dann als Frei gelten, weil die Körperteile vor und nach dem Knick so liegen, dass ein Feld als unbesetzt gilt; die Idee: statt der Koordinaten der oberen linken Ecke die Koordinaten der Mitte benutzen, um das Problem zu loesen
+## Dienstag 3.Juni:
+### Zielsetzung:
+   - Dibya: den Ansatz korrekt implementieren
+### Tatsächlich erreicht:
+   - Dibya: Ansatz korrekt implementiert; Der Fehler (falsche Berechnung der Koordinaten des Mittelpunktes des Feldes) ist behoben.
