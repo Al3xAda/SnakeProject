@@ -18,7 +18,6 @@ void setup () {
   visualSnake.createSnake();
 }
 void draw () {
-  println("------------------------------------");
   spielfeld.zeichneFeld();
   //coordSchl.printCoord(false);
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
@@ -30,7 +29,6 @@ void draw () {
   visualSnake.createSnake();
   spielfeld.setzeApfel();
   spielfeld.apfelEssen();
-  //delay(2000);
 }
 
 public Datenstruktur getDs() {
