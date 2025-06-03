@@ -24,15 +24,6 @@ class Datenstruktur extends Reservoir {
       zeigerInt.getNext().setIsTail(true);
     }
   }
-  private void turnVerschieben(Koerperteile k) {
-    if (k.getLeftTurn()) {
-      k.setLeftTurn(false);
-      k.getNext().setLeftTurn(true);
-    } else if (k.getRightTurn()) {
-      k.setRightTurn(false);
-      k.getNext().setRightTurn(true);
-    }
-  }
 
   public int getLength() {
     int i=1;
@@ -71,6 +62,10 @@ class Datenstruktur extends Reservoir {
     int adjustY=0;
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
+        if(zeiger.getIsTail()) {
+          println("Bedingung: "+ bedingung());
+          println("-----------------");
+        }
         if (zeiger.getIsHead()) {
           zeiger.setVorherDirection(zeiger.getDirection());
           int newDirection=zeiger.getDirection()+heading;
@@ -80,7 +75,7 @@ class Datenstruktur extends Reservoir {
             newDirection=0;
           }
           zeiger.setDirection(newDirection);
-        } else if (bedingung()) { //damit nicht nebeneinander abbiegen
+        } else /*if (bedingung())*/ { //damit nicht nebeneinander abbiegen
           switch(zeiger.getDirection()) {//sozusagen vorherDirection, weil direction noch nicht angepasst
           case 0:
             adjustX=0;

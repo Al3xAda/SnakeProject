@@ -20,14 +20,6 @@ class Koerperteile extends Reservoir {
     posArr[0] = y;
     vorher=v;
   }
-  /*public Koerperteile(boolean lT, boolean rT,  boolean hE,  int d, int x, int y) {
-   leftTurn = lT;
-   rightTurn = rT;
-   hasEaten = hE;
-   direction=d;
-   posArr[0] = x;
-   posArr[1] = y;
-   }*/
   public boolean getLeftTurn() {
     return leftTurn;
   }
@@ -49,8 +41,6 @@ class Koerperteile extends Reservoir {
   public int[] getTilePos() { //Koordinaten im nFelder*nFelder-Feld
     float xTile=((posArr[1]+((unterteilung/2)+0.5))/unterteilung); //*1.5, um aus oberer linker Ecke
     float yTile=((posArr[0]+((unterteilung/2)+0.5))/unterteilung); // Koordinate des Mittelpunktes zu machen
-    //xTile+=0.5; //+ 0.5, um aus oberer linker Ecke
-    //yTile+=0.5; // Koordinate des Mittelpunktes zu machen
     int []t={(int)yTile, (int)xTile};
     return t;
   }

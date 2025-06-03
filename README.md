@@ -78,3 +78,10 @@
    - Dibya: den Ansatz korrekt implementieren
 ### Tatsächlich erreicht:
    - Dibya: Ansatz korrekt implementiert; Der Fehler (falsche Berechnung der Koordinaten des Mittelpunktes des Feldes) ist behoben.
+## Dienstag 3.Juni (Abend):
+### Problem:
+   - Dibya: Nachdem ich den oben genannten Fehler behoben habe, ist mir ein weiterer Fehler aufgefallen: Wenn die Schlange aus zwei Elementen besteht (also am ganz Anfang) und sich einem Apfel von oben, unten oder rechts nähert und sich direkt nach dem Essen des Apfels (und dem daraus folgendem Verlängern) dreht, dann löst sich das Ende der Schlange vom restlichen Körper.
+### Ursache:
+   - Dibya: In dem oben dargestellten Fall wird das neue Schlangenteil am falschen Ort angehangen. Nur wenn die Schlange von links kommt, ist der "Anhängeort" richtig.
+### Lösung:
+   - Dibya: Die Variablen adjustX und adjustY werden unabhängig von bedingung() aktualisiert.

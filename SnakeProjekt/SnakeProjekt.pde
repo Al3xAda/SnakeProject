@@ -6,7 +6,9 @@ private Koordinatenschlange coordSchl=new Koordinatenschlange();
 private Schlange visualSnake=new Schlange();
 private int steuerkurs;
 Reservoir r=new Reservoir();
+boolean langsamer;
 void setup () {
+  langsamer=false;
   size(850, 850);
   steuerkurs=0;
   ds.initialisiere();
@@ -29,6 +31,11 @@ void draw () {
   visualSnake.createSnake();
   spielfeld.setzeApfel();
   spielfeld.apfelEssen();
+  if(langsamer){
+    delay(2000);
+  } else {
+    delay(100);
+  }
 }
 
 public Datenstruktur getDs() {
@@ -41,6 +48,9 @@ public Koordinatenschlange getCoordSchl() {
 
 void keyPressed() {
   //println("pressed");
+  if(key=='l'){
+    langsamer=!langsamer;
+  }
   switch(keyCode) {
   case KeyEvent.VK_LEFT:
     switch(ds.getSnakePart(0).getDirection()) {
