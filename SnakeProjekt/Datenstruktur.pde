@@ -75,7 +75,7 @@ class Datenstruktur extends Reservoir {
             newDirection=0;
           }
           zeiger.setDirection(newDirection);
-        } else /*if (bedingung())*/ { //damit nicht nebeneinander abbiegen
+        } else { 
           switch(zeiger.getDirection()) {//sozusagen vorherDirection, weil direction noch nicht angepasst
           case 0:
             adjustX=0;

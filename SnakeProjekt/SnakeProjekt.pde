@@ -21,7 +21,6 @@ void setup () {
 }
 void draw () {
   spielfeld.zeichneFeld();
-  //coordSchl.printCoord(false);
   if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
     ds.move(steuerkurs, spielfeld.apfelinSchlange());
     steuerkurs=0;
@@ -34,7 +33,7 @@ void draw () {
   if(langsamer){
     delay(2000);
   } else {
-    delay(100);
+    
   }
 }
 

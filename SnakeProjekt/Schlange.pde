@@ -12,6 +12,5 @@ class Schlange extends Reservoir {
         gs.drawSquare(coord);
       }
     }
-    //System.out.println("---------------------");
   }
 }
