@@ -2,7 +2,7 @@ import java.awt.event.KeyEvent;
 private Wand[][] spfa =new Wand[15][15];
 private Spielfeld spielfeld;
 private Datenstruktur ds=new Datenstruktur();
-private Koordinatenschlange coordSchl=new Koordinatenschlange();
+private Koordinatenschlange coordSchl=new Koordinatenschlange(false);
 private Schlange visualSnake=new Schlange();
 private int steuerkurs;
 Reservoir r=new Reservoir();

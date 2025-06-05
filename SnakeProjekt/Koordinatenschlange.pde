@@ -2,18 +2,45 @@ class Koordinatenschlange {
   private Datenstruktur rawSnake=getDs();
   private Koordinatenhalter erste;
   private Koordinatenhalter zeiger;
+  private boolean flexibel;
+
+  Koordinatenschlange(boolean f) {
+    flexibel=f;
+  }
+
+  public void attachTileCoord(int[]a) {
+    if (flexibel) {
+      zeiger=erste;
+      if (erste==null) {
+        erste=new Koordinatenhalter(null, a);
+      } else {
+        while (zeiger.getNextElement()!=null) {
+          zeiger=zeiger.getNextElement();
+        }
+        zeiger.setNextElement(new Koordinatenhalter(null, a));
+      }
+    }
+  }
+
+  public void clearCoord() {
+    if (flexibel) {
+      erste=null;
+    }
+  }
 
   private void update() {
-    erste=null;
-    int [] temp1=rawSnake.getSnakePart(0).getPosArr();
-    int [] temp2=rawSnake.getSnakePart(0).getTilePos();
-    erste=new Koordinatenhalter(temp1, temp2);
-    zeiger=erste;
-    for (int i=0; i<(rawSnake.getLength()-1); i++) {
-      temp1=rawSnake.getSnakePart(i+1).getPosArr();
-      temp2=rawSnake.getSnakePart(i+1).getTilePos();
-      zeiger.setNextElement(new Koordinatenhalter(temp1, temp2));
-      zeiger=zeiger.getNextElement();
+    if (!flexibel) {
+      erste=null;
+      int [] temp1=rawSnake.getSnakePart(0).getPosArr();
+      int [] temp2=rawSnake.getSnakePart(0).getTilePos();
+      erste=new Koordinatenhalter(temp1, temp2);
+      zeiger=erste;
+      for (int i=0; i<(rawSnake.getLength()-1); i++) {
+        temp1=rawSnake.getSnakePart(i+1).getPosArr();
+        temp2=rawSnake.getSnakePart(i+1).getTilePos();
+        zeiger.setNextElement(new Koordinatenhalter(temp1, temp2));
+        zeiger=zeiger.getNextElement();
+      }
     }
   }
 
@@ -40,16 +67,6 @@ class Koordinatenschlange {
     }
     System.out.println("Fehler bei Koordniatenschlange - getPosCoord");
     return -44;
-  }
-
-  public boolean snakePartExists(int x, int y) {
-    boolean rueckgabe=false;
-    for (int i=0; i<getLength(); i++) {
-      if (getTileCoord(i)[0]==y && getTileCoord(i)[1]==x) {
-        rueckgabe=true;
-      }
-    }
-    return rueckgabe;
   }
 
   public int[] getPosCoord(int j) {

@@ -3,6 +3,7 @@ class Spielfeld extends Reservoir {
 
   Wand wand = new Wand("wand");
   Koordinatenschlange coordSchl = getCoordSchl();
+  Koordinatenschlange freeTile=new Koordinatenschlange(true);
   private int ax;
   private int ay;
 
