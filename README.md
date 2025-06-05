@@ -88,3 +88,5 @@
 ## Donnerstag 5.Juni:
 ### Zielsetzung:
    - Dibya: In der Klasse "Grafikschlange" eine Methode zum Hinzufügen von Elementen und zum entfernen aller Elemente einfügen, damit Mounib die Logik zum Einfügen von Äpfel so ändern kann, dass erst alle "freien" Felder gespeichert werden (in einem Objekt von "Grafikschlange") und davon dann ein freies Fel zufällig ausgesucht wird
+### Tatsächlich erreicht:
+   - Dibya: Alles, aber noch nicht getestet (das macht Mounib)
