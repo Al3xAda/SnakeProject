@@ -85,3 +85,6 @@
    - Dibya: In dem oben dargestellten Fall wird das neue Schlangenteil am falschen Ort angehangen. Nur wenn die Schlange von links kommt, ist der "Anhängeort" richtig.
 ### Lösung:
    - Dibya: Die Variablen adjustX und adjustY werden unabhängig von bedingung() aktualisiert.
+## Donnerstag 5.Juni:
+### Zielsetzung:
+   - Dibya: In der Klasse "Grafikschlange" eine Methode zum Hinzufügen von Elementen und zum entfernen aller Elemente einfügen, damit Mounib die Logik zum Einfügen von Äpfel so ändern kann, dass erst alle "freien" Felder gespeichert werden (in einem Objekt von "Grafikschlange") und davon dann ein freies Fel zufällig ausgesucht wird
