@@ -1,13 +1,17 @@
 import java.awt.event.KeyEvent;
-private Wand[][] spfa =new Wand[15][15];
+private Wand[][] spfa;
 private Spielfeld spielfeld;
-private Datenstruktur ds=new Datenstruktur();
-private Koordinatenschlange coordSchl=new Koordinatenschlange(false);
-private Schlange visualSnake=new Schlange();
+private Datenstruktur ds;
+private Koordinatenschlange coordSchl;
+private Schlange visualSnake;
 private int steuerkurs;
 Reservoir r=new Reservoir();
 boolean langsamer;
 void setup () {
+  spfa =new Wand[15][15];
+  ds = new Datenstruktur();
+  coordSchl=new Koordinatenschlange(false);
+  visualSnake=new Schlange();
   langsamer=false;
   size(850, 850);
   steuerkurs=0;
@@ -32,8 +36,9 @@ void draw () {
   spielfeld.apfelEssen();
   if(langsamer){
     delay(2000);
-  } else {
-    
+  } 
+  if(spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
+    setup();
   }
 }
 
