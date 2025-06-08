@@ -25,13 +25,13 @@ void setup () {
   spielfeld.setzeApfel();
 }
 void draw () {
-  coordSchl.printCoord(false);
+  coordSchl.printCoord(true);
   if (spielfeld.apfelinSchlange()) {
     appleEaten=true;
   }
   try {
     spielfeld.zeichneFeld();
-    if (ds.getSnakePart(0, false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0, false).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
+    if (ds.getSnakePart(0, false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0, false).getPosArr()[1]%r.unterteilung==0) {
       ds.move(steuerkurs, appleEaten);
       if (appleEaten) {
         spielfeld.setzeApfel();
@@ -42,8 +42,8 @@ void draw () {
       ds.move(0, false);
     }
     visualSnake.createSnake();
-    if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
-      //setup();
+    if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand() || spielfeld.hasWon()) {
+      setup();
     }
   }
   catch(NullPointerException e) {
@@ -61,7 +61,6 @@ public Koordinatenschlange getCoordSchl() {
 }
 
 void keyPressed() {
-  //println("pressed");
   switch(keyCode) {
   case KeyEvent.VK_LEFT:
     switch(ds.getSnakePart(0, false).getDirection()) {

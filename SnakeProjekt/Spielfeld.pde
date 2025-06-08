@@ -14,7 +14,11 @@ class Spielfeld extends Reservoir {
       }
     }
   }
-
+  
+  public boolean hasWon(){
+    return (coordSchl.getLength()==(nFelder*nFelder));
+  }
+  
   public void zeichneFeld() {
     for (int i = 0; i < spfa.length; i++) {
       for (int j = 0; j < spfa[i].length; j++) {
@@ -86,10 +90,6 @@ class Spielfeld extends Reservoir {
     int[] kopf = coordSchl.getTileCoord(0, false);
     int kopfX = kopf[0];
     int kopfY = kopf[1];
-    int[] pos = coordSchl.getPosCoord(0, false);
-    if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
-      return false;
-    }
     for (int i = 1; i < coordSchl.getLength(); i++) {
       int[] segment = coordSchl.getTileCoord(i, true);
       if (segment[0] == kopfX && segment[1] == kopfY) {
@@ -103,13 +103,6 @@ class Spielfeld extends Reservoir {
     int[] kopf = coordSchl.getTileCoord(0, false);
     int x = kopf[0];
     int y = kopf[1];
-    int[] pos = coordSchl.getPosCoord(0, false);
-    if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
-      return false;
-    }
-    if (x < 0 || x >= spfa.length || y < 0 || y >= spfa[0].length) {
-      return true;
-    }
     if (spfa[x][y].typ.equals("wand")) {
       return true;
     }

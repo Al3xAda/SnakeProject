@@ -1,0 +1,133 @@
+import java.awt.event.KeyEvent;
+private Wand[][] spfa;
+private Spielfeld spielfeld;
+private Datenstruktur ds;
+private int steuerkurs;
+private boolean appleEaten;
+
+public class Main  extends Reservoir {
+  private Koordinatenschlange coordSchl;
+  private Schlange visualSnake;
+  @Override
+  void setup () {
+    dsCoordInit();
+    appleEaten=false;
+    spfa =new Wand[15][15];
+    ds = getDs();
+    coordSchl=getCoordSchl();
+    visualSnake=new Schlange();
+    size(850, 850);
+    steuerkurs=0;
+    ds.initialisiere();
+    spielfeld = new Spielfeld();
+    spielfeld.setzeWand();
+    spielfeld.zeichneFeld();
+    spielfeld.setzeWand();
+    spielfeld.zeichneFeld();
+    visualSnake.createSnake();
+    spielfeld.setzeApfel();
+  }
+  
+  @Override
+  void draw () {
+    coordSchl.printCoord(false);
+    if (spielfeld.apfelinSchlange()) {
+      appleEaten=true;
+    }
+    try {
+      spielfeld.zeichneFeld();
+      if (ds.getSnakePart(0, false).getPosArr()[0]%unterteilung==0 && ds.getSnakePart(0, false).getPosArr()[1]%unterteilung==0 /*&& !vorherGedreht*/) {
+        ds.move(steuerkurs, appleEaten);
+        if (appleEaten) {
+          spielfeld.setzeApfel();
+        }
+        appleEaten=false;
+        steuerkurs=0;
+      } else {
+        ds.move(0, false);
+      }
+      visualSnake.createSnake();
+      if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
+        //setup();
+      }
+    }
+    catch(NullPointerException e) {
+      println("Nullpointer");
+      exit();
+    }
+  }
+
+public  void main(String[] args) {
+        
+    }
+
+  void keyPressed() {
+    //println("pressed");
+    switch(keyCode) {
+    case KeyEvent.VK_LEFT:
+      switch(ds.getSnakePart(0, false).getDirection()) {
+      case 0:
+        steuerkurs=-90;
+        break;
+      case 90:
+        steuerkurs=0; //entgegengesetzt zur Richtung
+        break;
+      case 180:
+        steuerkurs=90;
+        break;
+      case 270:
+        steuerkurs=0;
+        break;
+      }
+      break;
+    case KeyEvent.VK_RIGHT:
+      switch(ds.getSnakePart(0, false).getDirection()) {
+      case 0:
+        steuerkurs=90;
+        break;
+      case 90:
+        steuerkurs=0;
+        break;
+      case 180:
+        steuerkurs=-90;
+        break;
+      case 270:
+        steuerkurs=0;  //entgegengesetzt zur Richtung
+        break;
+      }
+      break;
+    case KeyEvent.VK_UP:
+      switch(ds.getSnakePart(0, false).getDirection()) {
+      case 0:
+        steuerkurs=0;
+        break;
+      case 90:
+        steuerkurs=-90;
+        break;
+      case 180:
+        steuerkurs=0; //entgegengesetzt zur Richtung
+        break;
+      case 270:
+        steuerkurs=90;
+        break;
+      }
+      break;
+    case KeyEvent.VK_DOWN:
+      switch(ds.getSnakePart(0, false).getDirection()) {
+      case 0:
+        steuerkurs=0; //entgegengesetzt zur Richtung
+        break;
+      case 90:
+        steuerkurs=90;
+        break;
+      case 180:
+        steuerkurs=0;
+        break;
+      case 270:
+        steuerkurs=-90;
+        break;
+      }
+      break;
+    }
+  }
+}
