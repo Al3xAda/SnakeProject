@@ -22,28 +22,31 @@ void setup () {
   spielfeld.setzeWand();
   spielfeld.zeichneFeld();
   visualSnake.createSnake();
+  spielfeld.setzeApfel();
 }
 void draw () {
   coordSchl.printCoord(false);
-  if(spielfeld.apfelinSchlange()) {
+  if (spielfeld.apfelinSchlange()) {
     appleEaten=true;
   }
   try {
     spielfeld.zeichneFeld();
-    if (ds.getSnakePart(0,false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0,false).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
+    if (ds.getSnakePart(0, false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0, false).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
       ds.move(steuerkurs, appleEaten);
+      if (appleEaten) {
+        spielfeld.setzeApfel();
+      }
       appleEaten=false;
       steuerkurs=0;
     } else {
       ds.move(0, false);
     }
     visualSnake.createSnake();
-    spielfeld.setzeApfel();
-    spielfeld.apfelEssen();
     if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
       //setup();
     }
-  } catch(NullPointerException e) {
+  }
+  catch(NullPointerException e) {
     println("Nullpointer");
     exit();
   }
@@ -61,7 +64,7 @@ void keyPressed() {
   //println("pressed");
   switch(keyCode) {
   case KeyEvent.VK_LEFT:
-    switch(ds.getSnakePart(0,false).getDirection()) {
+    switch(ds.getSnakePart(0, false).getDirection()) {
     case 0:
       steuerkurs=-90;
       break;
@@ -77,7 +80,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_RIGHT:
-    switch(ds.getSnakePart(0,false).getDirection()) {
+    switch(ds.getSnakePart(0, false).getDirection()) {
     case 0:
       steuerkurs=90;
       break;
@@ -93,7 +96,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_UP:
-    switch(ds.getSnakePart(0,false).getDirection()) {
+    switch(ds.getSnakePart(0, false).getDirection()) {
     case 0:
       steuerkurs=0;
       break;
@@ -109,7 +112,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_DOWN:
-    switch(ds.getSnakePart(0,false).getDirection()) {
+    switch(ds.getSnakePart(0, false).getDirection()) {
     case 0:
       steuerkurs=0; //entgegengesetzt zur Richtung
       break;

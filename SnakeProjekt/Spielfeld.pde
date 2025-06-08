@@ -34,25 +34,7 @@ class Spielfeld extends Reservoir {
     }
   }
 
-  public boolean istApfel() {
-    boolean istApfel = true;
-    for (int i = 0; i<spfa.length; i++) {
-      for ( int j=0; j<spfa.length; j++) {
-        if (spfa[i][j] != new Wand("apfel")) {
-          istApfel = false;
-        }
-      }
-    }
-    return istApfel;
-  }
   public void setzeApfel() {
-    for (int i = 0; i < spfa.length; i++) {
-      for (int j = 0; j < spfa[i].length; j++) {
-        if (spfa[i][j].typ.equals("apfel")) {
-          return;
-        }
-      }
-    }
     ArrayList<int[]> freieFelder = new ArrayList<int[]>();
 
     for (int x = 0; x < spfa.length; x++) {
@@ -63,7 +45,7 @@ class Spielfeld extends Reservoir {
         boolean aufSchlange = false;
         for (int i = 0; i < coordSchl.getLength(); i++) {
           int[] pos = coordSchl.getTileCoord(i, i!=0);
-          if (pos[0] == x && pos[1] == y) {
+          if (pos[1] == x && pos[0] == y) {
             aufSchlange = true;
             break;
           }
@@ -93,6 +75,9 @@ class Spielfeld extends Reservoir {
     int[] pos = coordSchl.getTileCoord(0, false);
     if (pos[0] == y && pos[1] == x /*&& coordSchl.getPosCoord(0, false)[0]%unterteilung==0&& coordSchl.getPosCoord(0, false)[1]%unterteilung==0*/) {
       aufSchlange = true;
+    }
+    if(aufSchlange) {
+      spfa[ax][ay] = new Wand("leer");
     }
     return aufSchlange;
   }
@@ -131,19 +116,5 @@ class Spielfeld extends Reservoir {
     return false;
   }
 
-  public void apfelEssen() {
-    if (apfelinSchlange()==true) {
-      spfa[ax][ay] = new Wand("leer");
-    }
-  }
-
-  /*public boolean CrashMitWand(){
-   boolean crashed=false;
-   for(int i=0; i<spfa.length; i++){
-   if(spfa[][])
-   }
-   
-   }
-   
-   */
+  
 }
