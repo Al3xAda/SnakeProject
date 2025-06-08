@@ -3,7 +3,6 @@ class Spielfeld extends Reservoir {
 
   Wand wand = new Wand("wand");
   Koordinatenschlange coordSchl = getCoordSchl();
-  Koordinatenschlange freeTile=new Koordinatenschlange(true);
   private int ax;
   private int ay;
 
@@ -77,7 +76,7 @@ class Spielfeld extends Reservoir {
     int y = ay;
     boolean aufSchlange = false;
     int[] pos = coordSchl.getTileCoord(0, false);
-    if (pos[0] == y && pos[1] == x /*&& coordSchl.getPosCoord(0, false)[0]%unterteilung==0&& coordSchl.getPosCoord(0, false)[1]%unterteilung==0*/) {
+    if (pos[0] == y && pos[1] == x) {
       aufSchlange = true;
     }
     if(aufSchlange) {

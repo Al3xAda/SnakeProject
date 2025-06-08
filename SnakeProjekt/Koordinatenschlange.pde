@@ -3,40 +3,9 @@ class Koordinatenschlange extends Reservoir {
   private Koordinatenhalter erste;
   private Koordinatenhalter zeiger1;
   private Koordinatenhalter zeiger2;
-  private boolean flexibel;
-  Koordinatenschlange(boolean f) {
-    flexibel=f;
-  }
-
-  public void attachTileCoord(int[]a) {
-    Koordinatenhalter zeiger;
-    try {
-      if (flexibel) {
-        if (erste==null) {
-          erste=new Koordinatenhalter(/*null,*/ null, a, 0);
-        } else {
-          zeiger=erste;
-          while (zeiger.getNextElement()!=null) {
-            zeiger=zeiger.getNextElement();
-          }
-          zeiger.setNextElement(new Koordinatenhalter(/*zeiger,*/ null, a, (zeiger.getIndex()+1)));
-        }
-      }
-    }
-    catch (NullPointerException e) {
-      println("attach");
-    }
-  }
-
-  public void clearCoord() {
-    if (flexibel) {
-      erste=null;
-    }
-  }
-
+  
   private void update() {
     try {
-      if (!flexibel) {
         erste=null;
         int [] temp1=rawSnake.getSnakePart(0, false).getPosArr();
         int [] temp2=rawSnake.getSnakePart(0, false).getTilePos();
@@ -45,10 +14,8 @@ class Koordinatenschlange extends Reservoir {
         for (int i=0; i<((rawSnake.getLength())-1); i++) {
           temp1=rawSnake.getSnakePart(i+1, true).getPosArr();
           temp2=rawSnake.getSnakePart(i+1, true).getTilePos();
-          //System.out.println("xArrRaw"+(i+1)+": "+temp2[1]+"  |  yArrRaw"+(i+1)+": "+temp2[0]);
-          zeigerInt.setNextElement((new Koordinatenhalter(/*zeigerInt,*/ temp1, temp2, ((zeigerInt.getIndex())+1))));
+          zeigerInt.setNextElement((new Koordinatenhalter(temp1, temp2, ((zeigerInt.getIndex())+1))));
           zeigerInt=zeigerInt.getNextElement();
-        }
       }
     }
     catch (NullPointerException e) {
@@ -94,9 +61,7 @@ class Koordinatenschlange extends Reservoir {
       }
     }
     if (j<getLength()) {
-      //println("betrachtete Stelle: "+zeiger1.getIndex());
       while (zeiger1.getIndex()!=j&&zeiger1.getIndex()>0 &&zeiger1.getIndex()<getLength()) {
-        //println("betrachtete Stelle: "+zeiger1.getIndex());
         zeiger1=zeiger1.getNextElement();
         if (zeiger1==null) {
           println("Fehler tileCoord");

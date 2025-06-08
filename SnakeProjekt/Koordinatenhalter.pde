@@ -4,23 +4,16 @@ class Koordinatenhalter {
   private int []arrPos; //(nFelder*unterteilung)-Felde
   private int []arrTile; //nFelderFeld
   int index;
-  public Koordinatenhalter(/*Koordinatenhalter p,*/ int[]a, int[]b, int i) {
-    //prev=p;
+  public Koordinatenhalter(int[]a, int[]b, int i) {
     arrPos=a;
     arrTile=b;
     index=i;
   }
   public Koordinatenhalter getPreviousElement() {
-    //try {
     if (prev==null) {
       println(index+" hat kein previous");
     }
     return prev;
-    /*}
-     catch (NullPointerException e) {
-     println("Nullpointer in previous");
-     return null;
-     }*/
   }
   public void setNextElement(Koordinatenhalter kh) {
     next=kh;

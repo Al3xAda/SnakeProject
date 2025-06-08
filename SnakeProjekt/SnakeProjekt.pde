@@ -8,10 +8,13 @@ private int steuerkurs;
 private boolean appleEaten;
 Reservoir r=new Reservoir();
 void setup () {
+  fill(0, 0, 0);
+  textSize(40);
+  text("Press 'r' to restart and 'x' to exit the game :)", (r.verschiebung*2), ((r.seiteGraphisch*r.nFelder)+(7*r.verschiebung)));
   appleEaten=false;
   spfa =new Wand[15][15];
   ds = new Datenstruktur();
-  coordSchl=new Koordinatenschlange(false);
+  coordSchl=new Koordinatenschlange();
   visualSnake=new Schlange();
   size(850, 850);
   steuerkurs=0;
@@ -61,6 +64,12 @@ public Koordinatenschlange getCoordSchl() {
 }
 
 void keyPressed() {
+  if (key=='r') {
+    setup();
+  }
+  if (key=='x') {
+    exit();
+  }
   switch(keyCode) {
   case KeyEvent.VK_LEFT:
     switch(ds.getSnakePart(0, false).getDirection()) {
