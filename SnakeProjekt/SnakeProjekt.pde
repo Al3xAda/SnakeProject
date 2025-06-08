@@ -6,13 +6,11 @@ private Koordinatenschlange coordSchl;
 private Schlange visualSnake;
 private int steuerkurs;
 Reservoir r=new Reservoir();
-boolean langsamer;
 void setup () {
   spfa =new Wand[15][15];
   ds = new Datenstruktur();
   coordSchl=new Koordinatenschlange(false);
   visualSnake=new Schlange();
-  langsamer=false;
   size(850, 850);
   steuerkurs=0;
   ds.initialisiere();
@@ -24,22 +22,26 @@ void setup () {
   visualSnake.createSnake();
 }
 void draw () {
-  spielfeld.zeichneFeld();
-  if (ds.getSnakePart(0).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
-    ds.move(steuerkurs, spielfeld.apfelinSchlange());
-    steuerkurs=0;
-  } else {
-    ds.move(0, false);
+  coordSchl.printCoord(false);
+  try {
+    spielfeld.zeichneFeld();
+    if (ds.getSnakePart(0,false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0,false).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
+      ds.move(steuerkurs, spielfeld.apfelinSchlange());
+      steuerkurs=0;
+    } else {
+      ds.move(0, false);
+    }
+    visualSnake.createSnake();
+    spielfeld.setzeApfel();
+    spielfeld.apfelEssen();
+    if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
+      //setup();
+    }
+  } catch(NullPointerException e) {
+    println("Nullpointer");
+    exit();
   }
-  visualSnake.createSnake();
-  spielfeld.setzeApfel();
-  spielfeld.apfelEssen();
-  if(langsamer){
-    delay(2000);
-  } 
-  if(spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand()) {
-    setup();
-  }
+  //delay(500);
 }
 
 public Datenstruktur getDs() {
@@ -52,12 +54,9 @@ public Koordinatenschlange getCoordSchl() {
 
 void keyPressed() {
   //println("pressed");
-  if(key=='l'){
-    langsamer=!langsamer;
-  }
   switch(keyCode) {
   case KeyEvent.VK_LEFT:
-    switch(ds.getSnakePart(0).getDirection()) {
+    switch(ds.getSnakePart(0,false).getDirection()) {
     case 0:
       steuerkurs=-90;
       break;
@@ -73,7 +72,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_RIGHT:
-    switch(ds.getSnakePart(0).getDirection()) {
+    switch(ds.getSnakePart(0,false).getDirection()) {
     case 0:
       steuerkurs=90;
       break;
@@ -89,7 +88,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_UP:
-    switch(ds.getSnakePart(0).getDirection()) {
+    switch(ds.getSnakePart(0,false).getDirection()) {
     case 0:
       steuerkurs=0;
       break;
@@ -105,7 +104,7 @@ void keyPressed() {
     }
     break;
   case KeyEvent.VK_DOWN:
-    switch(ds.getSnakePart(0).getDirection()) {
+    switch(ds.getSnakePart(0,false).getDirection()) {
     case 0:
       steuerkurs=0; //entgegengesetzt zur Richtung
       break;

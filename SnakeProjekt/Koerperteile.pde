@@ -1,36 +1,26 @@
 class Koerperteile extends Reservoir {
-  private boolean leftTurn;
-  private boolean rightTurn;
   private boolean isHead;
-  private boolean hasEaten;
   private boolean isTail;
   private int direction;
   private int vorherDirection;
   private int posArr[]= new int[2];
   private Koerperteile next;
   private Koerperteile vorher;
-  public Koerperteile(boolean lT, boolean rT, boolean iH, boolean hE, boolean iT, int d, int x, int y, Koerperteile v) {
-    leftTurn = lT;
-    rightTurn = rT;
+  private int index;
+  public Koerperteile(boolean iH, boolean iT, int d, int x, int y, Koerperteile v, int i) {
     isHead = iH;
-    hasEaten = hE;
     isTail = iT;
     direction=d;
     posArr[1] = x;
     posArr[0] = y;
     vorher=v;
+    index=i;
   }
-  public boolean getLeftTurn() {
-    return leftTurn;
-  }
-  public boolean getRightTurn() {
-    return rightTurn;
+  public int getIndex() {
+    return index;
   }
   public boolean getIsHead() {
     return isHead;
-  }
-  public boolean getHasEaten() {
-    return hasEaten;
   }
   public boolean getIsTail() {
     return isTail;
@@ -50,17 +40,8 @@ class Koerperteile extends Reservoir {
   public Koerperteile getNext () {
     return next;
   }
-  public void setLeftTurn(boolean l) {
-    leftTurn=l;
-  }
-  public void setRightTurn(boolean r) {
-    rightTurn=r;
-  }
   public void setIsHead(boolean h) {
     isHead=h;
-  }
-  public void setHasEaten(boolean e) {
-    hasEaten=e;
   }
   public void setIsTail(boolean t) {
     isTail=t;

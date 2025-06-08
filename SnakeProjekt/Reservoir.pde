@@ -4,11 +4,17 @@ class Reservoir {
   public final int seiteArr=(seiteGraphisch/unterteilung);
   public final int nFelder=15;
   public final int verschiebung=10;
-  
-  public int [] arrToGraph(int [] a ){
-      int y=(a[0]*seiteArr)+verschiebung;
-      int x=(a[1]*seiteArr)+verschiebung;
-      int[]rueckArr={y,x};
-      return rueckArr;
-    }
+
+  public int [] arrToGraph(int [] a ) {
+    int y=(a[0]*seiteArr)+verschiebung;
+    int x=(a[1]*seiteArr)+verschiebung;
+    int[]rueckArr={y, x};
+    return rueckArr;
+  }
+  public int [] GraphToArr(int [] a ) {
+    int y=(a[0]/unterteilung);
+    int x=(a[1]/unterteilung);
+    int[]rueckArr={y, x};
+    return rueckArr;
+  }
 }

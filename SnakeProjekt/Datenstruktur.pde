@@ -1,15 +1,30 @@
 class Datenstruktur extends Reservoir {
   private Koerperteile erste;
   private Koerperteile zeiger;
+  Koerperteile zeigerGet;
+  private int laenge;
+  public Datenstruktur() {
+    laenge=0;
+  }
   public Koerperteile getHead() {
     if (erste==null) {
       System.out.println("Fehler: Kein Kopf");
     }
     return erste;
   }
-   public void initialisiere() {
-    attach(new Koerperteile(false, false, true, false, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null)); //möglichst mittige Positionierung
-    attach(new Koerperteile(false, false, false, false, true, 90, ((nFelder/2)*unterteilung)-unterteilung, (nFelder/2)*unterteilung, erste));
+  public void initialisiere() {
+    attach(new Koerperteile(true, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null, 0)); //möglichst mittige Positionierung
+    int n=1;
+    Koerperteile schieber=erste;
+    for (int i=0; i<255; i++) {
+      attach(new Koerperteile( false, false, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber, (schieber.getIndex()+1)));
+      schieber=schieber.getNext();
+      n++;
+    }
+    //möglichst mittige Positionierung
+    laenge=n+1;
+    attach(new Koerperteile(false, true, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber,(schieber.getIndex()+1)));
+
   }
   public void attach (Koerperteile a) {
     if (erste==null) {
@@ -26,25 +41,18 @@ class Datenstruktur extends Reservoir {
   }
 
   public int getLength() {
-    int i=1;
-    zeiger=erste;
-    while (zeiger.getNext()!=null) {
-      i++;
-      zeiger=zeiger.getNext();
-    }
-    return i;
+    return laenge;
   }
 
-  public Koerperteile getSnakePart(int j) {
-    Koerperteile zeigerInt;
+  public Koerperteile getSnakePart(int j, boolean effizient) {
+    if(zeigerGet==null || !effizient) {
+      zeigerGet=erste;
+    }
     if (j<getLength()) {
-      zeigerInt=erste;
-      int i=0;
-      while (i<j) {
-        zeigerInt=zeigerInt.getNext();
-        i++;
+      while (zeigerGet.getIndex()!=j) {
+        zeigerGet=zeigerGet.getNext();
       }
-      return zeigerInt;
+      return zeigerGet;
     }
     System.out.println("Fehler bei Datenstruktur - getSnakePart");
     return null;
@@ -62,10 +70,10 @@ class Datenstruktur extends Reservoir {
     int adjustY=0;
     while (zeiger!=null) {
       if ((zeiger.getPosArr()[0])%unterteilung==0 && (zeiger.getPosArr()[1])%unterteilung==0) { //heading nur aufaddieren, wenn Graphikfeld ueberquert
-        if(zeiger.getIsTail()) {
+        /*if (zeiger.getIsTail()) {
           println("Bedingung: "+ bedingung());
           println("-----------------");
-        }
+        }*/
         if (zeiger.getIsHead()) {
           zeiger.setVorherDirection(zeiger.getDirection());
           int newDirection=zeiger.getDirection()+heading;
@@ -75,7 +83,7 @@ class Datenstruktur extends Reservoir {
             newDirection=0;
           }
           zeiger.setDirection(newDirection);
-        } else { 
+        } else {
           switch(zeiger.getDirection()) {//sozusagen vorherDirection, weil direction noch nicht angepasst
           case 0:
             adjustX=0;
@@ -101,8 +109,9 @@ class Datenstruktur extends Reservoir {
         zeiger.setDirection(zeiger.getVorher().getVorherDirection());
       }
       if (zeiger.getNext()==null && verlaengern) {
-        Koerperteile schluss=new Koerperteile(false, false, false, false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger);
+        Koerperteile schluss=new Koerperteile( false, true, zeiger.getDirection(), (zeiger.getPosArr()[1]+adjustX), (zeiger.getPosArr()[0]+adjustY), zeiger, (zeiger.getIndex()+1));
         attach(schluss);
+        laenge++;
         verlaengern=false; //erneuten Aufruf in der naechsten Iteration vermeiden
       }
 

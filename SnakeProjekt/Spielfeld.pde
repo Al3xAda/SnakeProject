@@ -46,94 +46,93 @@ class Spielfeld extends Reservoir {
     return istApfel;
   }
   public void setzeApfel() {
-  for (int i = 0; i < spfa.length; i++) {
-    for (int j = 0; j < spfa[i].length; j++) {
-      if (spfa[i][j].typ.equals("apfel")) {
-        return;
-      }
-    }
-  }
-  ArrayList<int[]> freieFelder = new ArrayList<int[]>();
-
-  for (int x = 0; x < spfa.length; x++) {
-    for (int y = 0; y < spfa[x].length; y++) {
-      if (!spfa[x][y].typ.equals("leer")) {
-        continue;
-      }
-      boolean aufSchlange = false;
-      for (int i = 0; i < coordSchl.getLength(); i++) {
-        int[] pos = coordSchl.getTileCoord(i);
-        if (pos[0] == x && pos[1] == y) {
-          aufSchlange = true;
-          break;
+    long anfang=millis();
+    freeTile.clearCoord();
+    for (int x = 0; x < spfa.length; x++) {
+      for (int y = 0; y < spfa[x].length; y++) {
+        if (spfa[x][y].typ.equals("apfel")) {
+          return;
+        }
+        if (spfa[x][y].typ.equals("leer")) {
+          boolean aufSchlange = false;
+          for (int i = 0; i < coordSchl.getLength(); i++) {
+            int[] pos = coordSchl.getTileCoord(i,i!=0);
+            if (pos[0] == x && pos[1] == y) {
+              aufSchlange = true;
+              break;
+            }
+          }
+          if (!aufSchlange) {
+            int[]a={x, y};
+            freeTile.attachTileCoord(a);
+          }
         }
       }
-      if (!aufSchlange) {
-        freieFelder.add(new int[]{x, y});
-      }
     }
+    if (freeTile.getLength() > 0) {
+      int randI=(int)(Math.random()*freeTile.getLength());
+      int[] zufall = freeTile.getTileCoord(randI,false);
+      int x = zufall[0];
+      int y = zufall[1];
+      ax = x;
+      ay = y;
+      spfa[x][y] = new Wand("apfel");
+    }
+    long ende=millis();
+   // println("Bearbeitung: "+(ende-anfang));
   }
-  if (freieFelder.size() > 0) {
-    int[] zufall = freieFelder.get((int)(Math.random() * freieFelder.size()));
-    int x = zufall[0];
-    int y = zufall[1];
-    ax = x;
-    ay = y;
-    spfa[x][y] = new Wand("apfel");
-  }
-}
 
 
   public boolean apfelinSchlange() {
     int x = ax;
     int y = ay;
     boolean aufSchlange = false;
-    int[] pos = coordSchl.getTileCoord(0);
-    if (pos[0] == y && pos[1] == x && coordSchl.getPosCoord(0)[0]%unterteilung==0&& coordSchl.getPosCoord(0)[1]%unterteilung==0) {
+    int[] pos = coordSchl.getTileCoord(0,false);
+    if (pos[0] == y && pos[1] == x && coordSchl.getPosCoord(0,false)[0]%unterteilung==0&& coordSchl.getPosCoord(0,false)[1]%unterteilung==0) {
       aufSchlange = true;
     }
     return aufSchlange;
   }
 
   public boolean schlangeInSchlange() {
-  int[] kopf = coordSchl.getTileCoord(0);
-  int kopfX = kopf[0];
-  int kopfY = kopf[1];
-  int[] pos = coordSchl.getPosCoord(0);
-  if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
+    int[] kopf = coordSchl.getTileCoord(0,false);
+    int kopfX = kopf[0];
+    int kopfY = kopf[1];
+    int[] pos = coordSchl.getPosCoord(0,false);
+    if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
+      return false;
+    }
+    for (int i = 1; i < coordSchl.getLength(); i++) {
+      int[] segment = coordSchl.getTileCoord(i, true);
+      if (segment[0] == kopfX && segment[1] == kopfY) {
+        return true;
+      }
+    }
     return false;
   }
-  for (int i = 1; i < coordSchl.getLength(); i++) {
-    int[] segment = coordSchl.getTileCoord(i);
-    if (segment[0] == kopfX && segment[1] == kopfY) {
+
+  public boolean schlangeInWand() {
+    int[] kopf = coordSchl.getTileCoord(0,false);
+    int x = kopf[0];
+    int y = kopf[1];
+    int[] pos = coordSchl.getPosCoord(0,false);
+    if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
+      return false;
+    }
+    if (x < 0 || x >= spfa.length || y < 0 || y >= spfa[0].length) {
       return true;
     }
-  }
-  return false;
-}
-
-public boolean schlangeInWand() {
-  int[] kopf = coordSchl.getTileCoord(0);
-  int x = kopf[0];
-  int y = kopf[1];
-  int[] pos = coordSchl.getPosCoord(0);
-  if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
+    if (spfa[x][y].typ.equals("wand")) {
+      return true;
+    }
     return false;
   }
-  if (x < 0 || x >= spfa.length || y < 0 || y >= spfa[0].length) {
-    return true;
-  }
-  if (spfa[x][y].typ.equals("wand")) {
-    return true;
-  }
-  return false;
-}
 
-public void apfelEssen() {
+  public void apfelEssen() {
     if (apfelinSchlange()==true) {
       spfa[ax][ay] = new Wand("leer");
     }
-}
+  }
 
   /*public boolean CrashMitWand(){
    boolean crashed=false;
