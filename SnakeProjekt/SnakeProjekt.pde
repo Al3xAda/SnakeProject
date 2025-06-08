@@ -5,8 +5,10 @@ private Datenstruktur ds;
 private Koordinatenschlange coordSchl;
 private Schlange visualSnake;
 private int steuerkurs;
+private boolean appleEaten;
 Reservoir r=new Reservoir();
 void setup () {
+  appleEaten=false;
   spfa =new Wand[15][15];
   ds = new Datenstruktur();
   coordSchl=new Koordinatenschlange(false);
@@ -23,10 +25,14 @@ void setup () {
 }
 void draw () {
   coordSchl.printCoord(false);
+  if(spielfeld.apfelinSchlange()) {
+    appleEaten=true;
+  }
   try {
     spielfeld.zeichneFeld();
     if (ds.getSnakePart(0,false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0,false).getPosArr()[1]%r.unterteilung==0 /*&& !vorherGedreht*/) {
-      ds.move(steuerkurs, spielfeld.apfelinSchlange());
+      ds.move(steuerkurs, appleEaten);
+      appleEaten=false;
       steuerkurs=0;
     } else {
       ds.move(0, false);
@@ -41,7 +47,6 @@ void draw () {
     println("Nullpointer");
     exit();
   }
-  //delay(500);
 }
 
 public Datenstruktur getDs() {

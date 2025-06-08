@@ -46,59 +46,62 @@ class Spielfeld extends Reservoir {
     return istApfel;
   }
   public void setzeApfel() {
-    long anfang=millis();
-    freeTile.clearCoord();
-    for (int x = 0; x < spfa.length; x++) {
-      for (int y = 0; y < spfa[x].length; y++) {
-        if (spfa[x][y].typ.equals("apfel")) {
+    for (int i = 0; i < spfa.length; i++) {
+      for (int j = 0; j < spfa[i].length; j++) {
+        if (spfa[i][j].typ.equals("apfel")) {
           return;
-        }
-        if (spfa[x][y].typ.equals("leer")) {
-          boolean aufSchlange = false;
-          for (int i = 0; i < coordSchl.getLength(); i++) {
-            int[] pos = coordSchl.getTileCoord(i,i!=0);
-            if (pos[0] == x && pos[1] == y) {
-              aufSchlange = true;
-              break;
-            }
-          }
-          if (!aufSchlange) {
-            int[]a={x, y};
-            freeTile.attachTileCoord(a);
-          }
         }
       }
     }
-    if (freeTile.getLength() > 0) {
-      int randI=(int)(Math.random()*freeTile.getLength());
-      int[] zufall = freeTile.getTileCoord(randI,false);
+    ArrayList<int[]> freieFelder = new ArrayList<int[]>();
+
+    for (int x = 0; x < spfa.length; x++) {
+      for (int y = 0; y < spfa[x].length; y++) {
+        if (!spfa[x][y].typ.equals("leer")) {
+          continue;
+        }
+        boolean aufSchlange = false;
+        for (int i = 0; i < coordSchl.getLength(); i++) {
+          int[] pos = coordSchl.getTileCoord(i, i!=0);
+          if (pos[0] == x && pos[1] == y) {
+            aufSchlange = true;
+            break;
+          }
+        }
+        if (!aufSchlange) {
+          freieFelder.add(new int[]{x, y});
+        }
+      }
+    }
+    if (freieFelder.size() > 0) {
+      int[] zufall = freieFelder.get((int)(Math.random() * freieFelder.size()));
       int x = zufall[0];
       int y = zufall[1];
       ax = x;
       ay = y;
       spfa[x][y] = new Wand("apfel");
     }
-    long ende=millis();
-   // println("Bearbeitung: "+(ende-anfang));
   }
+
+
 
 
   public boolean apfelinSchlange() {
     int x = ax;
     int y = ay;
     boolean aufSchlange = false;
-    int[] pos = coordSchl.getTileCoord(0,false);
-    if (pos[0] == y && pos[1] == x && coordSchl.getPosCoord(0,false)[0]%unterteilung==0&& coordSchl.getPosCoord(0,false)[1]%unterteilung==0) {
+    int[] pos = coordSchl.getTileCoord(0, false);
+    if (pos[0] == y && pos[1] == x /*&& coordSchl.getPosCoord(0, false)[0]%unterteilung==0&& coordSchl.getPosCoord(0, false)[1]%unterteilung==0*/) {
       aufSchlange = true;
     }
     return aufSchlange;
   }
 
   public boolean schlangeInSchlange() {
-    int[] kopf = coordSchl.getTileCoord(0,false);
+    int[] kopf = coordSchl.getTileCoord(0, false);
     int kopfX = kopf[0];
     int kopfY = kopf[1];
-    int[] pos = coordSchl.getPosCoord(0,false);
+    int[] pos = coordSchl.getPosCoord(0, false);
     if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
       return false;
     }
@@ -112,10 +115,10 @@ class Spielfeld extends Reservoir {
   }
 
   public boolean schlangeInWand() {
-    int[] kopf = coordSchl.getTileCoord(0,false);
+    int[] kopf = coordSchl.getTileCoord(0, false);
     int x = kopf[0];
     int y = kopf[1];
-    int[] pos = coordSchl.getPosCoord(0,false);
+    int[] pos = coordSchl.getPosCoord(0, false);
     if (pos[0] % unterteilung != 0 || pos[1] % unterteilung != 0) {
       return false;
     }
