@@ -1,22 +1,16 @@
 class Datenstruktur extends Reservoir {
   private Koerperteile erste;
   private Koerperteile zeiger;
-  Koerperteile zeigerGet;
+  private Koerperteile zeigerGet;
   private int laenge;
   public Datenstruktur() {
     laenge=0;
-  }
-  public Koerperteile getHead() {
-    if (erste==null) {
-      System.out.println("Fehler: Kein Kopf");
-    }
-    return erste;
   }
   public void initialisiere() {
     attach(new Koerperteile(true, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null, 0)); //möglichst mittige Positionierung
     int n=1;
     Koerperteile schieber=erste;
-    for (int i=0; i<0; i++) {
+    for (int i=0; i<50; i++) {
       attach(new Koerperteile( false, false, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber, (schieber.getIndex()+1)));
       schieber=schieber.getNext();
       n++;
