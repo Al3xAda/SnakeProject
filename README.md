@@ -95,3 +95,9 @@
    - Dibya: Laufzeitkomplexität des Programms verbessern, indem ich unnötige/doppelte Schleifendurchgänge (das "durchloopen" der Schlange) reduziere
 ### Tatsächlich erreicht:
    - Dibya: Ziel erreicht; dabei sehr viele Bugs (vor allem Null-Pointer-Exceptions) beseitigt und die Logik, wie Äpfel in das Spielfeld eingesetzt werden geringfügig optimiert (vgl. Commits); außerdem die Methoden von Mounib zum Beenden des Spiels bei Game-Over-Situationen (die Schlange stößt gegen die Wand oder gegen sich selbst) in das Spiel integriert und eine Methode zur Erkennung, ob jemand das Spiel gewonnen hat erstellt und ebenfalls integriert; zuletzt die Benutzterfreundlichkeit verbessert, da man nun das Spiel mit der "x"-Taste schließen und mit der "r"-Taste neustarten kann
+
+## Montag 9. Juni:
+### Zielsetzung
+   - Alexander: Methode drawHead() erweitern, um das Anzeigen von Augen zu ermöglichen, die sich dank arithmetischen Operationen nach Bewegungsrichtung der Schlange ausrichten.
+### Tatsächlich erreicht:
+   
