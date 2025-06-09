@@ -98,4 +98,6 @@
 
 ## Montag 9. Juni:
 ### Zielsetzung
-   - Alexander: Methode drawHead() erweitern um das Anzeigen von Augen zu ermöglichen, die sich dank arithmetischen Operationen nach Bewegungsrichtung der Schlange positionieren
+   - Alexander: Methode drawHead() erweitern, um das Anzeigen von Augen zu ermöglichen, die sich dank arithmetischen Operationen nach Bewegungsrichtung der Schlange ausrichten.
+### Tatsächlich erreicht:
+   
