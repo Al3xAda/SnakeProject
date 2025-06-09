@@ -10,7 +10,7 @@ class Datenstruktur extends Reservoir {
     attach(new Koerperteile(true, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null, 0)); //möglichst mittige Positionierung
     int n=1;
     Koerperteile schieber=erste;
-    for (int i=0; i<50; i++) {
+    for (int i=0; i<0; i++) {
       attach(new Koerperteile( false, false, 90, ((nFelder/2)*unterteilung)-(unterteilung*n), (nFelder/2)*unterteilung, schieber, (schieber.getIndex()+1)));
       schieber=schieber.getNext();
       n++;
