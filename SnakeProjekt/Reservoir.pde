@@ -11,10 +11,4 @@ class Reservoir {
     int[]rueckArr={y, x};
     return rueckArr;
   }
-  public int [] GraphToArr(int [] a ) {
-    int y=(a[0]/unterteilung);
-    int x=(a[1]/unterteilung);
-    int[]rueckArr={y, x};
-    return rueckArr;
-  }
 }
