@@ -1,11 +1,10 @@
 # Die Erklärung der Klassen
 ## Datenstruktur:
-    - Die Klasse "Datenstruktur" ist der Kern, um die Schlange zu bedienen. Sie verwaltet Objekte der Klasse "Koerperteile" (die
-     einzelnen Bestandteile der Schlange). Mit der "Datenstruktur" (und der darin enthaltenen Operation "getSnakePart()")kann
-      man auf die Attribute von "Koerperteile" (wie Position und Ausrichtung) zugreifen und die Schlange durch das Anhängen 
-      neuer Objekte vom Typ "Koerperteile" (mit der Operation "attach()") erweitern. Außerdem wird die Schlange in 
-      "Datenstruktur" durch die Operation "move()" bewegt (=die einzelnen Koordinaten der Objekte von "Koerperteile" werden 
-      entsprechend geändert).
+    - Die Klasse "Datenstruktur" ist der Kern,  um die Schlange zu bedienen. Sie verwaltet   Objekte der Klasse "Koerperteile"  
+     (die einzelnen Bestandteile der Schlange). Mit der "Datenstruktur" (und der darin enthaltenen Operation "getSnakePart()")kann man auf die Attribute von "Koerperteile" (wie Position und Ausrichtung) zugreifen und die Schlange durch das Anhängen 
+     neuer Objekte vom Typ "Koerperteile" (mit der Operation "attach()") erweitern. Außerdem wird die Schlange in 
+     "Datenstruktur" durch die Operation "move()" bewegt (=die einzelnen Koordinaten der Objekte von "Koerperteile" werden 
+     entsprechend geändert).
 ## Schlange:
     - In der Klasse "Schlange" wird die Logik der Schlange (also grundlegende Attribute wie die Position der einzelnen 
      Körperteile), die in "Datenstruktur" verwaltet wird, visualisert, mit den dazu angelegten Methoden in "Grafikschlange".
