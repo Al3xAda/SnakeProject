@@ -15,6 +15,7 @@ class Grafikschlange extends Reservoir{
     rect((float)pos[1], (float) pos[0], (float) seiteGraphisch, (float) seiteGraphisch);
     
     // draw Eyes (bugged)
+    /*
     println(ds.getSnakePart(0, false).getDirection() + 45);
     float xPos1 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(((float)ds.getSnakePart(0, false).getDirection() ) + 45) );
     float yPos1 = ((float)pos[0]) + halbeSeite - (halbeSeite * cos(((float) ds.getSnakePart(0, false).getDirection() ) + 45) );
@@ -28,5 +29,6 @@ class Grafikschlange extends Reservoir{
     fill(50,40,30);
     circle(xPos1, yPos1, 4);
     circle(xPos2, yPos2, 4);
+    */
   }
 }
