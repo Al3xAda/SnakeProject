@@ -19,7 +19,13 @@
      gespeichert, um aber aufwändige Punktnotationen zu vemeiden, die es benötigt hätte, um in der Klasse "Spielfeld" darauf
      zurückzugreifen, wurden diese Informationen in "Koordinatenschlange" gesondert gespeichert.
 ## Spielfeld:
-
+    - Das Spielfeld besteht aus einzelnen Feldern (bzw. aus Objekten vom Typ
+     "Wand"). In der Klasse "Wand" werden je nach Bedarf neben Wände auch 
+     Spielfelder und Äpfel gezeichnet. Um zu vermeiden, dass Äpfel auf ein Feld 
+     gesetzt werden, in dem sich die Schlange befindet, werden in der Methode 
+     "setzteApfel()" (mithilfe eines Abgleichs mit den Schlangenkoordinaten, die in 
+     "Koordinatenschlange" verwaltet werden) nur die Koordinaten in Betracht 
+     gezogen, die frei sind.
 ## Reservoir:
     - Sehr viele Klassen erben von "Reservoir". In ihr sind zentrale Informatione wie die Unterteilung der Felder und die Anzahl
      an Feldern gespeichert, die für die diversen Berechnungen in den Operationen der einzelnen Klassen von großer Bedeutung sind.
