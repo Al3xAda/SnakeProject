@@ -100,4 +100,8 @@
 ### Zielsetzung
    - Alexander: Methode drawHead() erweitern, um das Anzeigen von Augen zu ermöglichen, die sich dank arithmetischen Operationen nach Bewegungsrichtung der Schlange ausrichten.
 ### Tatsächlich erreicht:
-   
+   - Alexander: Augen in fehlerhaften Zustand implementiert, denn sie richten sich nicht korrekt aus, womit die Schlange schielt.
+
+## Montag 11. Juni
+### Erreicht
+   - Alexander: Fehler in der Ausrichtung der Augen behoben dank Konversion zu Bogenmaß in der Formel. 
