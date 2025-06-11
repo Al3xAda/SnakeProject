@@ -15,20 +15,22 @@ class Grafikschlange extends Reservoir{
     rect((float)pos[1], (float) pos[0], (float) seiteGraphisch, (float) seiteGraphisch);
     
     // draw Eyes (bugged)
-    /*
+    
+    // convert direction to radians
+    float radDirection = radians((float) ds.getSnakePart(0, false).getDirection() );
+
     println(ds.getSnakePart(0, false).getDirection() + 45);
-    float xPos1 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(((float)ds.getSnakePart(0, false).getDirection() ) + 45) );
-    float yPos1 = ((float)pos[0]) + halbeSeite - (halbeSeite * cos(((float) ds.getSnakePart(0, false).getDirection() ) + 45) );
-    float xPos2 = ((float)pos[1]) + halbeSeite - (halbeSeite * sin(((float)ds.getSnakePart(0, false).getDirection() ) + 45) );
-    float yPos2 = ((float)pos[0]) + halbeSeite + (halbeSeite * cos(((float) ds.getSnakePart(0, false).getDirection() ) + 45) );
-    println("x-Pos:", pos[1] , "Eye 1 at x = ", xPos1);
-    println("y-Pos:", pos[0] , "Eye 1 at y = ", yPos1);
-    fill(230,20,50);
+    float xPos1 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(radDirection + PI/2) );
+    float yPos1 = ((float)pos[0]) + halbeSeite - (halbeSeite * cos(radDirection + PI/2) );
+    float xPos2 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(radDirection - PI/2) );
+    float yPos2 = ((float)pos[0]) + halbeSeite - (halbeSeite * cos(radDirection - PI/2) );
+    //println("x-Pos:", pos[1] , "Eye 1 at x = ", xPos1);
+    //println("y-Pos:", pos[0] , "Eye 1 at y = ", yPos1);
+    fill(230,200,250);
     circle(xPos1, yPos1, 10);
     circle(xPos2, yPos2, 10);
-    fill(50,40,30);
+    fill(98, 73, 8);
     circle(xPos1, yPos1, 4);
     circle(xPos2, yPos2, 4);
-    */
   }
 }
