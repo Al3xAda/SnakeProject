@@ -1,16 +1,10 @@
 class Datenstruktur extends Reservoir {
   private Koerperteile erste;
   private Koerperteile zeiger;
-  Koerperteile zeigerGet;
+  private Koerperteile zeigerGet;
   private int laenge;
   public Datenstruktur() {
     laenge=0;
-  }
-  public Koerperteile getHead() {
-    if (erste==null) {
-      System.out.println("Fehler: Kein Kopf");
-    }
-    return erste;
   }
   public void initialisiere() {
     attach(new Koerperteile(true, false, 90, (nFelder/2)*unterteilung, (nFelder/2)*unterteilung, null, 0)); //möglichst mittige Positionierung

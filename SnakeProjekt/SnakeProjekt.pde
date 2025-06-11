@@ -28,7 +28,7 @@ void setup () {
   spielfeld.setzeApfel();
 }
 void draw () {
-  coordSchl.printCoord(true);
+  //coordSchl.printCoord(true);
   if (spielfeld.apfelinSchlange()) {
     appleEaten=true;
   }
