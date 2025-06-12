@@ -14,12 +14,12 @@ class Grafikschlange extends Reservoir{
     fill(255,255,0);
     rect((float)pos[1], (float) pos[0], (float) seiteGraphisch, (float) seiteGraphisch);
     
-    // draw Eyes (bugged)
+    // draw Eyes
     
     // convert direction to radians
     float radDirection = radians((float) ds.getSnakePart(0, false).getDirection() );
 
-    println(ds.getSnakePart(0, false).getDirection() + 45);
+    //println(ds.getSnakePart(0, false).getDirection() + 45);
     float xPos1 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(radDirection + PI/2) );
     float yPos1 = ((float)pos[0]) + halbeSeite - (halbeSeite * cos(radDirection + PI/2) );
     float xPos2 = ((float)pos[1]) + halbeSeite + (halbeSeite * sin(radDirection - PI/2) );

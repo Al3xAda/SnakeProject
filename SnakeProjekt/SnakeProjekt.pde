@@ -4,6 +4,7 @@ private Spielfeld spielfeld;
 private Datenstruktur ds;
 private Koordinatenschlange coordSchl;
 private Schlange visualSnake;
+private UserInterface ui;
 private int steuerkurs;
 private boolean appleEaten;
 Reservoir r=new Reservoir();
@@ -16,6 +17,7 @@ void setup () {
   ds = new Datenstruktur();
   coordSchl=new Koordinatenschlange();
   visualSnake=new Schlange();
+  ui = new UserInterface();
   size(850, 850);
   steuerkurs=0;
   ds.initialisiere();
@@ -26,19 +28,23 @@ void setup () {
   spielfeld.zeichneFeld();
   visualSnake.createSnake();
   spielfeld.setzeApfel();
+  
 }
 void draw () {
   //coordSchl.printCoord(true);
   if (spielfeld.apfelinSchlange()) {
     appleEaten=true;
+    
   }
   try {
     spielfeld.zeichneFeld();
     if (ds.getSnakePart(0, false).getPosArr()[0]%r.unterteilung==0 && ds.getSnakePart(0, false).getPosArr()[1]%r.unterteilung==0) {
       ds.move(steuerkurs, appleEaten);
       if (appleEaten) {
+        ui.erhoeheScore(1);
         spielfeld.setzeApfel();
       }
+      
       appleEaten=false;
       steuerkurs=0;
     } else {
@@ -48,11 +54,13 @@ void draw () {
     if (spielfeld.schlangeInSchlange() || spielfeld.schlangeInWand() || spielfeld.hasWon()) {
       setup();
     }
+    
   }
   catch(NullPointerException e) {
     println("Nullpointer");
     exit();
   }
+  ui.showScore(770, 40);
 }
 
 public Datenstruktur getDs() {
