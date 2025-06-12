@@ -105,3 +105,7 @@
 ## Montag 11. Juni
 ### Erreicht
    - Alexander: Fehler in der Ausrichtung der Augen behoben dank Konversion zu Bogenmaß in der Formel. 
+
+## Dienstag 12. Juni
+### Erreicht 
+   - Alexander: Score/Apfel-Zäler implementiert dank neuer Klasse "UserInterface"
